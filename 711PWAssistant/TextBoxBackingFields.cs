@@ -105,5 +105,206 @@ namespace _711PWAssistant
         public static string OnlineSales { get; set; }
         public static string InstantPaidOut { get; set; }
         public static string InstantSales { get; set; }
+
+        public static string AmbestRedeem { get; set; }
+        public static string StorePaidOut { get; set; }
+        public static string Coupons { get; set; }
+        public static string Incentive { get; set; }
+        public static string Reimbursement { get; set; }
+        public static string Overrun { get; set; }
+
+        public static string FuelType1 { get; set; }
+        public static string BillOfLading1 { get; set; }
+        public static string NetFuel1 { get; set; }
+        public static string GrossFuel1 { get; set; }
+        public static string FuelType2 { get; set; }
+        public static string BillOfLading2 { get; set; }
+        public static string NetFuel2 { get; set; }
+        public static string GrossFuel2 { get; set; }
+        public static string FuelType3 { get; set; }
+        public static string BillOfLading3 { get; set; }
+        public static string NetFuel3 { get; set; }
+        public static string GrossFuel3 { get; set; }
+        public static string FuelType4 { get; set; }
+        public static string BillOfLading4 { get; set; }
+        public static string NetFuel4 { get; set; }
+        public static string GrossFuel4 { get; set; }
+        public static string FuelType5 { get; set; }
+        public static string BillOfLading5 { get; set; }
+        public static string NetFuel5 { get; set; }
+        public static string GrossFuel5 { get; set; }
+        public static string FuelType6 { get; set; }
+        public static string BillOfLading6 { get; set; }
+        public static string NetFuel6 { get; set; }
+        public static string GrossFuel6 { get; set; }
+        public static string FuelType7 { get; set; }
+        public static string BillOfLading7 { get; set; }
+        public static string NetFuel7 { get; set; }
+        public static string GrossFuel7 { get; set; }
+        public static string FuelType8 { get; set; }
+        public static string BillOfLading8 { get; set; }
+        public static string NetFuel8 { get; set; }
+        public static string GrossFuel8 { get; set; }
+        public static string UnleadedEthanolDollars { get; set; }
+        public static string MidgradeEthanolDollars { get; set; }
+        public static string PremiumEthanolDollars { get; set; }
+        public static string UltraDollars { get; set; }
+        public static string DieselDollars { get; set; }
+        public static string DefDollars { get; set; }
+        public static string UnleadedEthanolUnits { get; set; }
+        public static string MidgradeEthanolUnits { get; set; }
+        public static string PremiumEthanolUnits { get; set; }
+        public static string UltraUnits { get; set; }
+        public static string DieselUnits { get; set; }
+        public static string DefUnits { get; set; }
+
+        public static void ClearAllFields()
+        {
+            FrontPennies = 0;
+            FrontNickles = 0;
+            FrontDimes = 0;
+            FrontQuarters = 0;
+            FrontOnes = 0;
+            FrontFives = 0;
+            FrontTens = 0;
+            FrontTwenties = 0;
+
+            BackPennies = 0;
+            BackNickles = 0;
+            BackDimes = 0;
+            BackQuarters = 0;
+            BackOnes = 0;
+            BackFives = 0;
+            BackTens = 0;
+            BackTwenties = 0;
+
+            TotalSafe = 0;
+
+            DieselCigs = 0;
+            GasCigs = 0;
+            OfficeCigs = 0;
+            MclaneCigs = 0;
+            TotalCigs = 0;
+
+            CashierChange1 = 0;
+            CashierChange2 = 0;
+            CashierChange3 = 0;
+            CashierChange4 = 0;
+            CashierChange5 = 0;
+            CashierChange6 = 0;
+            CashierChange7 = 0;
+            CashierChange8 = 0;
+            CashierChange9 = 0;
+            CashierChange10 = 0;
+
+            CashierVariance1 = 0;
+            CashierVariance2 = 0;
+            CashierVariance3 = 0;
+            CashierVariance4 = 0;
+            CashierVariance5 = 0;
+            CashierVariance6 = 0;
+            CashierVariance7 = 0;
+            CashierVariance8 = 0;
+            CashierVariance9 = 0;
+            CashierVariance10 = 0;
+
+            CashierDrops1 = 0;
+            CashierDrops2 = 0;
+            CashierDrops3 = 0;
+            CashierDrops4 = 0;
+            CashierDrops5 = 0;
+            CashierDrops6 = 0;
+            CashierDrops7 = 0;
+            CashierDrops8 = 0;
+            CashierDrops9 = 0;
+            CashierDrops10 = 0;
+
+            CashierName1 = null;
+            CashierName2 = null;
+            CashierName3 = null;
+            CashierName4 = null;
+            CashierName5 = null;
+            CashierName6 = null;
+            CashierName7 = null;
+            CashierName8 = null;
+            CashierName9 = null;
+            CashierName10 = null;
+
+            LowFeedstock = null;
+            HighFeedstock = null;
+            Diesel = null;
+            DieselFiscal5 = null;
+            DieselKer1 = null;
+            UltE852 = null;
+            UnleadRace = null;
+            Def3 = null;
+            DefRec90 = null;
+
+            Checks = 0;
+
+            InstantPaidOut = null;
+            InstantSales = null;
+            OnlinePaidOut = null;
+            OnlineSales = null;
+
+            AmbestRedeem = null;
+            StorePaidOut = null;
+            Incentive = null;
+            Coupons = null;
+
+            FuelType1 = null;
+            BillOfLading1 = null;
+            NetFuel1 = null;
+            GrossFuel1 = null;
+
+            FuelType2 = null;
+            BillOfLading2 = null;
+            NetFuel2 = null;
+            GrossFuel2 = null;
+
+            FuelType3 = null;
+            BillOfLading3 = null;
+            NetFuel3 = null;
+            GrossFuel3 = null;
+
+            FuelType4 = null;
+            BillOfLading4 = null;
+            NetFuel4 = null;
+            GrossFuel4 = null;
+
+            FuelType5 = null;
+            BillOfLading5 = null;
+            NetFuel5 = null;
+            GrossFuel5 = null;
+
+            FuelType6 = null;
+            BillOfLading6 = null;
+            NetFuel6 = null;
+            GrossFuel6 = null;
+
+            FuelType7 = null;
+            BillOfLading7 = null;
+            NetFuel7 = null;
+            GrossFuel7 = null;
+
+            FuelType8 = null;
+            BillOfLading8 = null;
+            NetFuel8 = null;
+            GrossFuel8 = null;
+
+            UnleadedEthanolDollars = null;
+            MidgradeEthanolDollars = null;
+            PremiumEthanolDollars = null;
+            DieselDollars = null;
+            DefDollars = null;
+            UltraDollars = null;
+
+            UnleadedEthanolUnits = null;
+            MidgradeEthanolUnits = null;
+            PremiumEthanolUnits = null;
+            DieselUnits = null;
+            DefUnits = null;
+            UltraUnits = null;
+        }
     }
 }

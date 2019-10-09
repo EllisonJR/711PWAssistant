@@ -15,6 +15,7 @@ namespace _711PWAssistant
         public Misc_Sales miscSales;
         public Safe_Totals safeTotals;
         public Totalizers totalizers;
+        public Pump_Tests pumpTests;
 
         public List<Fuel_Deliveries> fuelDeliveries;
         public List<Cashier_Values> cashierValues;
@@ -27,6 +28,7 @@ namespace _711PWAssistant
             miscSales = new Misc_Sales();
             safeTotals = new Safe_Totals();
             totalizers = new Totalizers();
+            pumpTests = new Pump_Tests();
 
             fuelDeliveries = new List<Fuel_Deliveries>();
             cashierValues = new List<Cashier_Values>();

@@ -8,17 +8,27 @@ using ZetPDF.Pdf;
 using ZetPDF.Forms;
 using ZetPDF.Drawing;
 using System.Windows.Forms;
+using System.IO;
+using System.Threading;
+using System.Diagnostics;
+using ZetPDF.Pdf.Printing;
+using System.Drawing;
 
 
 namespace _711PWAssistant
 {
     class PDFFormatter
     {
-        public PDFFormatter()
+        public PDFFormatter(bool printPreview)
         {
+
+            double pageWidth;
+            double pageHeight;
             PdfDocument document = new PdfDocument();
             PdfPage page = document.AddPage();
             page.Size = PageSize.A4;
+            pageWidth = page.Width;
+            pageHeight = page.Height;
             XGraphics gfx = XGraphics.FromPdfPage(page);
             double fontHeight = 12;
             double boldFontHeight = 18;
@@ -810,13 +820,608 @@ namespace _711PWAssistant
                         cigRect.X += cigRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, cigRect);
                         gfx.DrawString(TextBoxBackingFields.TotalCigs.ToString(), smallDenotationFont, XBrushes.Black, cigRect.X + 2, cigRect.Y + 2, XStringFormats.TopLeft);
-                        cigRect.Y += cigRect.Height;
-                        cigRect.X -= cigRect.Width;
+                        cigRect.Y += cigRect.Height * 2;
                         break;
                 }
             }
 
-            document.Save("TestDocument.pdf");
+            double miscRectLength = lottoStartingCoords.X + cigRect.X - lottoStartingCoords.X;
+            miscRectLength /= 4;
+
+            XRect miscRect = new XRect(lottoStartingCoords.X, cigRect.Y + font.Height, miscRectLength, font.Height);
+            
+            gfx.DrawString("Miscellaneous", boldFont, XBrushes.Black, miscRect.X, miscRect.Y);
+            gfx.DrawLine(pen, miscRect.X, miscRect.Y + 2, cigRect.X + cigRect.Width, miscRect.Y + 2);
+
+            miscRect.Y += 10;
+
+            for(int i = 0; i < 3; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        gfx.DrawRectangle(pen, greyBox, miscRect);
+                        gfx.DrawString("Ambest Redemption", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        miscRect.X += miscRect.Width;
+                        gfx.DrawRectangle(pen, whiteBox, miscRect);
+                        if (TextBoxBackingFields.StorePaidOut != null)
+                        {
+                            gfx.DrawString(TextBoxBackingFields.AmbestRedeem, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        else
+                        {
+                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        miscRect.X -= miscRect.Width;
+                        miscRect.Y += font.Height;
+                        gfx.DrawRectangle(pen, greyBox, miscRect);
+                        gfx.DrawString("Store Paid Out", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        miscRect.X += miscRect.Width;
+                        gfx.DrawRectangle(pen, whiteBox, miscRect);
+                        if (TextBoxBackingFields.StorePaidOut != null)
+                        {
+                            gfx.DrawString(TextBoxBackingFields.StorePaidOut, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        else
+                        {
+                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        miscRect.X -= miscRect.Width;
+                        miscRect.Y += font.Height;
+                        break;
+                    case 1:
+                        gfx.DrawRectangle(pen, greyBox, miscRect);
+                        gfx.DrawString("Coupons", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        
+                        miscRect.X += miscRect.Width;
+                        gfx.DrawRectangle(pen, whiteBox, miscRect);
+                        if (TextBoxBackingFields.Coupons != null)
+                        {
+                            gfx.DrawString(TextBoxBackingFields.Coupons, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        else
+                        {
+                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        miscRect.X -= miscRect.Width;
+                        miscRect.Y += font.Height;
+                        gfx.DrawRectangle(pen, greyBox, miscRect);
+                        gfx.DrawString("Incentive", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        
+                        miscRect.X += miscRect.Width;
+                        gfx.DrawRectangle(pen, whiteBox, miscRect);
+                        if (TextBoxBackingFields.Incentive != null)
+                        {
+                            gfx.DrawString(TextBoxBackingFields.Incentive, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        else
+                        {
+                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        miscRect.Y += font.Height;
+                        miscRect.X -= miscRect.Width;
+                        break;
+                    case 2:
+                        gfx.DrawRectangle(pen, greyBox, miscRect);
+                        gfx.DrawString("Reimbursement", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+
+                        miscRect.X += miscRect.Width;
+                        gfx.DrawRectangle(pen, whiteBox, miscRect);
+                        if (TextBoxBackingFields.Reimbursement != null)
+                        {
+                            gfx.DrawString(TextBoxBackingFields.Reimbursement, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        else
+                        {
+                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        miscRect.X -= miscRect.Width;
+                        miscRect.Y += font.Height;
+                        gfx.DrawRectangle(pen, greyBox, miscRect);
+                        gfx.DrawString("Overrun", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+
+                        miscRect.X += miscRect.Width;
+                        gfx.DrawRectangle(pen, whiteBox, miscRect);
+                        if (TextBoxBackingFields.Overrun != null)
+                        {
+                            gfx.DrawString(TextBoxBackingFields.Overrun, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        else
+                        {
+                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
+                        }
+                        miscRect.Y += font.Height * 3;
+                        miscRect.X -= miscRect.Width;
+                        break;
+                }
+            }
+
+            XRect testRect = miscRect;
+            XRect pumptestRect = miscRect;
+            int pumpTests = 0;
+            testRect.Y += 10;
+            pumptestRect.Y += 10;
+            pumptestRect.Y += pumptestRect.Height;
+
+            for(int i = 0; i < 6; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        if (TextBoxBackingFields.UnleadedEthanolDollars != null && TextBoxBackingFields.UnleadedEthanolUnits != null)
+                        {
+                            pumpTests++;
+                            gfx.DrawRectangle(pen, greyBox, pumptestRect);
+                            gfx.DrawString("Unleaded Ethanol", smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            pumptestRect.Width = pumptestRect.Width / 2;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.UnleadedEthanolDollars, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.UnleadedEthanolUnits, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.Y += pumptestRect.Height;
+                            pumptestRect.X -= pumptestRect.Width * 3;
+                            pumptestRect.Width *= 2;
+                        }
+                        break;
+                    case 1:
+                        if (TextBoxBackingFields.MidgradeEthanolDollars != null && TextBoxBackingFields.MidgradeEthanolUnits != null)
+                        {
+                            pumpTests++;
+                            gfx.DrawRectangle(pen, greyBox, pumptestRect);
+                            gfx.DrawString("Midgrade Ethanol Blend", smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            pumptestRect.Width = pumptestRect.Width / 2;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.MidgradeEthanolDollars, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.MidgradeEthanolUnits, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.Y += pumptestRect.Height;
+                            pumptestRect.X -= pumptestRect.Width * 3;
+                            pumptestRect.Width *= 2;
+                        }
+                        break;
+                    case 2:
+                        if (TextBoxBackingFields.PremiumEthanolDollars != null && TextBoxBackingFields.PremiumEthanolUnits != null)
+                        {
+                            pumpTests++;
+                            gfx.DrawRectangle(pen, greyBox, pumptestRect);
+                            gfx.DrawString("Premium Ethanol Blend", smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            pumptestRect.Width = pumptestRect.Width / 2;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.PremiumEthanolDollars, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.PremiumEthanolUnits, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.Y += pumptestRect.Height;
+                            pumptestRect.X -= pumptestRect.Width * 3;
+                            pumptestRect.Width *= 2;
+                        }
+                        break;
+                    case 3:
+                        if (TextBoxBackingFields.UltraDollars != null && TextBoxBackingFields.UltraUnits != null)
+                        {
+                            pumpTests++;
+                            gfx.DrawRectangle(pen, greyBox, pumptestRect);
+                            gfx.DrawString("Ultra", smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            pumptestRect.Width = pumptestRect.Width / 2;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.UltraDollars, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.UltraUnits, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.Y += pumptestRect.Height;
+                            pumptestRect.X -= pumptestRect.Width * 3;
+                            pumptestRect.Width *= 2;
+                        }
+                        break;
+                    case 4:
+                        if (TextBoxBackingFields.DieselDollars != null && TextBoxBackingFields.DieselUnits != null)
+                        {
+                            pumpTests++;
+                            gfx.DrawRectangle(pen, greyBox, pumptestRect);
+                            gfx.DrawString("Diesel", smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            pumptestRect.Width = pumptestRect.Width / 2;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.DieselDollars, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.DieselUnits, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.Y += pumptestRect.Height;
+                            pumptestRect.X -= pumptestRect.Width * 3;
+                            pumptestRect.Width *= 2;
+                        }
+                        break;
+                    case 5:
+                        if (TextBoxBackingFields.DefDollars != null && TextBoxBackingFields.DefUnits != null)
+                        {
+                            pumpTests++;
+                            gfx.DrawRectangle(pen, greyBox, pumptestRect);
+                            gfx.DrawString("DEF", smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            pumptestRect.Width = pumptestRect.Width / 2;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.DefDollars, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.X += pumptestRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, pumptestRect);
+                            gfx.DrawString(TextBoxBackingFields.DefUnits, smallDenotationFont, XBrushes.Black, pumptestRect.X + 2, pumptestRect.Y + 2, XStringFormats.TopLeft);
+                            pumptestRect.Y += pumptestRect.Height;
+                            pumptestRect.X -= pumptestRect.Width * 3;
+                            pumptestRect.Width *= 2;
+                        }
+                        break;
+                }
+            }
+
+            if (pumpTests > 0)
+            {
+                gfx.DrawString("Pump Tests", boldFont, XBrushes.Black, miscRect.X, miscRect.Y);
+                gfx.DrawLine(pen, miscRect.X, miscRect.Y + 2, cigRect.X + cigRect.Width, miscRect.Y + 2);
+
+                gfx.DrawRectangle(pen, greyBox, testRect);
+                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, testRect.X + 2, testRect.Y + 2, XStringFormats.TopLeft);
+                testRect.X += testRect.Width;
+                testRect.Width = testRect.Width / 2;
+                gfx.DrawRectangle(pen, greyBox, testRect);
+                gfx.DrawString("Dollars", smallDenotationFont, XBrushes.Black, testRect.X + 2, testRect.Y + 2, XStringFormats.TopLeft);
+                testRect.X += testRect.Width;
+                gfx.DrawRectangle(pen, greyBox, testRect);
+                gfx.DrawString("Units", smallDenotationFont, XBrushes.Black, testRect.X + 2, testRect.Y + 2, XStringFormats.TopLeft);
+            }
+
+            double fuelRectWidth = (safeBorderBottomLeft.X + safeBorderBottomRight.X) - safeBorderBottomLeft.X;
+            fuelRectWidth = fuelRectWidth / 4 - 7.5;
+            XRect fuelRect = new XRect(safeBorderBottomLeft.X, safeBorderBottomLeft.Y + font.Height * 2 + 10, fuelRectWidth, font.Height);
+
+            int fuelDelivCount = 0;
+
+            for(int i = 0; i < 8; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if(TextBoxBackingFields.FuelType1 != "<choose fuel type>" && TextBoxBackingFields.FuelType1 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType1, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading1, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel1, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel1, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 1:
+                        if (TextBoxBackingFields.FuelType2 != "<choose fuel type>" && TextBoxBackingFields.FuelType2 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType2, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading2, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel2, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel2, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 2:
+                        if (TextBoxBackingFields.FuelType3 != "<choose fuel type>" && TextBoxBackingFields.FuelType3 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType3, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading3, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel3, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel3, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 3:
+                        if (TextBoxBackingFields.FuelType4 != "<choose fuel type>" && TextBoxBackingFields.FuelType4 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType4, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading4, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel4, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel4, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 4:
+                        if (TextBoxBackingFields.FuelType5 != "<choose fuel type>" && TextBoxBackingFields.FuelType5 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType5, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading5, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel5, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel5, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 5:
+                        if (TextBoxBackingFields.FuelType6 != "<choose fuel type>" && TextBoxBackingFields.FuelType6 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType6, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading6, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel6, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel6, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 6:
+                        if (TextBoxBackingFields.FuelType7 != "<choose fuel type>" && TextBoxBackingFields.FuelType7 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType7, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading7, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel7, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel7, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                    case 7:
+                        if (TextBoxBackingFields.FuelType8 != "<choose fuel type>" && TextBoxBackingFields.FuelType8 != null)
+                        {
+                            fuelDelivCount++;
+                            if (fuelDelivCount == 1)
+                            {
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Fuel Type", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X += fuelRect.Width;
+                                gfx.DrawRectangle(pen, greyBox, fuelRect);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                fuelRect.X -= fuelRect.Width * 3;
+                                fuelRect.Y += font.Height;
+                            }
+                            gfx.DrawRectangle(pen, greyBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.FuelType8, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.BillOfLading8, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.NetFuel8, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X += fuelRect.Width;
+                            gfx.DrawRectangle(pen, whiteBox, fuelRect);
+                            gfx.DrawString(TextBoxBackingFields.GrossFuel8, smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                            fuelRect.X -= fuelRect.Width * 3;
+                            fuelRect.Y += font.Height;
+                        }
+                        break;
+                }
+            }
+
+            if (fuelDelivCount > 0)
+            {
+                gfx.DrawString("Fuel Deliveries", boldFont, XBrushes.Black, safeBorderBottomLeft.X, safeBorderBottomLeft.Y + font.Height * 2);
+                gfx.DrawLines(pen, safeBorderBottomLeft.X, safeBorderBottomLeft.Y + font.Height * 2 + 2, safeBorderBottomRight.X, safeBorderBottomLeft.Y + font.Height * 2 + 2);
+            }
+
+            if (File.Exists(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["ImgFilePath"].ToString() + "7-11-images-3.PNG"))
+            {
+                double subx = 150;
+                double suby = 150;
+                XImage image = XImage.FromFile(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["ImgFilePath"].ToString() + "7-11-images-3.PNG");
+
+                gfx.DrawImage(image, Convert.ToInt32(pageWidth - subx), Convert.ToInt32(pageHeight - suby));
+            }
+            
+
+            Stream documentStream = new FileStream(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["PdfFilePath"].ToString() + TextBoxBackingFields.PaperworkDate.ToString("MM-dd-yyy") + " PWS.pdf", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+            document.Save(documentStream, true);
+
+            if (printPreview == false)
+            {
+                using (PrintDialog dialogue = new PrintDialog())
+                {
+                    if (dialogue.ShowDialog() == DialogResult.OK)
+                    {
+
+                        ProcessStartInfo printProcessInfo = new ProcessStartInfo()
+                        {
+                            Verb = "print",
+                            CreateNoWindow = true,
+                            FileName = Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["PdfFilePath"].ToString() + TextBoxBackingFields.PaperworkDate.ToString("MM-dd-yyy") + " PWS.pdf",
+                            WindowStyle = ProcessWindowStyle.Hidden
+                        };
+
+                        printProcessInfo.FileName = Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["PdfFilePath"].ToString() + TextBoxBackingFields.PaperworkDate.ToString("MM-dd-yyy") + " PWS.pdf";
+
+                        Process printProcess = new Process();
+                        printProcess.StartInfo = printProcessInfo;
+                        printProcess.Start();
+
+                        printProcess.WaitForInputIdle();
+
+                        Thread.Sleep(3000);
+
+                        if (false == printProcess.CloseMainWindow())
+                        {
+                            printProcess.Kill();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["PdfFilePath"].ToString() + TextBoxBackingFields.PaperworkDate.ToString("MM-dd-yyy") + " PWS.pdf");
+            }
         }
     }
 }

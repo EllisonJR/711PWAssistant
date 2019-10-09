@@ -13,6 +13,8 @@ namespace _711PWAssistant
         private string _storePaidOut;
         private string _coupons;
         private string _employeeIncentive;
+        public string Reimbursement { get; set; }
+        public string Overrun { get; set; }
 
         public string AmbestRedemption
         {

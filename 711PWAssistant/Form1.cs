@@ -15,6 +15,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using ZetPDF.Pdf;
 using ZetPDF.Drawing;
+using System.Drawing.Printing;
 
 namespace _711PWAssistant
 {
@@ -22,21 +23,48 @@ namespace _711PWAssistant
     {
         Form_Values formValues;
         IFormatter binaryFormatter = new BinaryFormatter();
-        string filepath = @"C:\Users\Steven\Desktop\PaperWork Sets\";
+
+
         PWSDateForm dateForm;
         CultureInfo culture = CultureInfo.CreateSpecificCulture("en-US");
-
+        TubesForm tubesForm;
+        PumpTestsForm pumpTests;
         public Form1()
         {
             InitializeComponent();
             dateForm = new PWSDateForm();
-            currentPWSLabel.Text = DateTime.Today.ToLongDateString();
+            tubesForm = new TubesForm();
+            pumpTests = new PumpTestsForm();
+            currentPWSLabel.Text = DateTime.Today.AddDays(-1).ToLongDateString();
             culture.NumberFormat.CurrencyNegativePattern = 1;
-            TextBoxBackingFields.PaperworkDate = DateTime.Today;
+            TextBoxBackingFields.PaperworkDate = Convert.ToDateTime(currentPWSLabel.Text);
+            Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString());
+            Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["PdfFilePath"].ToString());
+            Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString());
+            Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["ExceptionFilePath"].ToString());
+            Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["TraceFilePath"].ToString());
+            Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["ImgFilePath"].ToString());
+            if(File.Exists(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString() + TextBoxBackingFields.PaperworkDate.ToString("MM-dd-yyyy") + " PWS.bin"))
+            {
+                Stream objStreamDeSerialize = new FileStream(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString() + TextBoxBackingFields.PaperworkDate.ToString("MM-dd-yyyy") + " PWS.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                formValues = (Form_Values)binaryFormatter.Deserialize(objStreamDeSerialize);
+
+                DeserializeFormValues();
+                objStreamDeSerialize.Close();
+            }
         }
         private void textChanged(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+            TextBox textBox = new TextBox();
+            ComboBox comboBox = new ComboBox();
+            if (sender is ComboBox)
+            {
+                comboBox = (ComboBox)sender;
+            }
+            else
+            {
+                textBox = (TextBox)sender;
+            }
             switch (textBox.Name)
             {
                 case "penniesFrontSafe":
@@ -72,7 +100,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.FrontNickles = Convert.ToDouble(textBox.Text);
-                        frontNicklesCalculated.Text = (TextBoxBackingFields.FrontNickles * 20.00).ToString("C");
+                        frontNicklesCalculated.Text = (TextBoxBackingFields.FrontNickles * 2.00).ToString("C");
                     }
                     break;
                 case "nicklesBackSafe":
@@ -144,7 +172,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.FrontOnes = Convert.ToDouble(textBox.Text);
-                        frontOnesCalculated.Text = (TextBoxBackingFields.FrontOnes * 20.00).ToString("C");
+                        frontOnesCalculated.Text = (TextBoxBackingFields.FrontOnes * Convert.ToDouble(Properties.Settings.Default["FrontOnes"])).ToString("C");
                     }
                     break;
                 case "onesBackSafe":
@@ -156,7 +184,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.BackOnes = Convert.ToDouble(textBox.Text);
-                        backOnesCalculated.Text = (TextBoxBackingFields.BackOnes * 20.00).ToString("C");
+                        backOnesCalculated.Text = (TextBoxBackingFields.BackOnes * Convert.ToDouble(Properties.Settings.Default["BackOnes"])).ToString("C");
                     }
                     break;
                 case "fivesFrontSafe":
@@ -168,7 +196,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.FrontFives = Convert.ToDouble(textBox.Text);
-                        frontFivesCalculated.Text = (TextBoxBackingFields.FrontFives * 40.00).ToString("C");
+                        frontFivesCalculated.Text = (TextBoxBackingFields.FrontFives * Convert.ToDouble(Properties.Settings.Default["FrontFives"])).ToString("C");
                     }
                     break;
                 case "fivesBackSafe":
@@ -180,7 +208,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.BackFives = Convert.ToDouble(textBox.Text);
-                        backFivesCalculated.Text = (TextBoxBackingFields.BackFives * 40.00).ToString("C");
+                        backFivesCalculated.Text = (TextBoxBackingFields.BackFives * Convert.ToDouble(Properties.Settings.Default["BackFives"])).ToString("C");
                     }
                     break;
                 case "tensFrontSafe":
@@ -192,7 +220,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.FrontTens = Convert.ToDouble(textBox.Text);
-                        frontTensCalculated.Text = (TextBoxBackingFields.FrontTens * 40.00).ToString("C");
+                        frontTensCalculated.Text = (TextBoxBackingFields.FrontTens * Convert.ToDouble(Properties.Settings.Default["FrontTens"])).ToString("C");
                     }
                     break;
                 case "tensBackSafe":
@@ -204,7 +232,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.BackTens = Convert.ToDouble(textBox.Text);
-                        backTensCalculated.Text = (TextBoxBackingFields.BackTens * 40.00).ToString("C");
+                        backTensCalculated.Text = (TextBoxBackingFields.BackTens * Convert.ToDouble(Properties.Settings.Default["BackTens"])).ToString("C");
                     }
                     break;
                 case "twentiesFrontSafe":
@@ -216,7 +244,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.FrontTwenties = Convert.ToDouble(textBox.Text);
-                        frontTwentiesCalculated.Text = (TextBoxBackingFields.FrontTwenties * 100.00).ToString("C");
+                        frontTwentiesCalculated.Text = (TextBoxBackingFields.FrontTwenties * Convert.ToDouble(Properties.Settings.Default["FrontTwenties"])).ToString("C");
                     }
                     break;
                 case "twentiesBackSafe":
@@ -228,7 +256,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.BackTwenties = Convert.ToDouble(textBox.Text);
-                        backTwentiesCalculated.Text = (TextBoxBackingFields.BackTwenties * 100.00).ToString("C");
+                        backTwentiesCalculated.Text = (TextBoxBackingFields.BackTwenties * Convert.ToDouble(Properties.Settings.Default["BackTwenties"])).ToString("C");
                     }
                     break;
                 case "officeSafe":
@@ -239,7 +267,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.OfficeSafe = Convert.ToDouble(textBox.Text);
-                        officeSafe.Text = TextBoxBackingFields.OfficeSafe.ToString();
+                        //officeSafe.Text = TextBoxBackingFields.OfficeSafe.ToString();
                     }
                     break;
                 case "dieselDrawer":
@@ -250,7 +278,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.DieselDrawer = Convert.ToDouble(textBox.Text);
-                        dieselDrawer.Text = TextBoxBackingFields.DieselDrawer.ToString();
+                        //dieselDrawer.Text = TextBoxBackingFields.DieselDrawer.ToString();
                     }
                     break;
                 case "gasDrawer":
@@ -261,7 +289,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.GasDrawer = Convert.ToDouble(textBox.Text);
-                        gasDrawer.Text = TextBoxBackingFields.GasDrawer.ToString();
+                        //gasDrawer.Text = TextBoxBackingFields.GasDrawer.ToString();
                     }
                     break;
                 case "gasCigs":
@@ -272,7 +300,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.GasCigs = Convert.ToDouble(textBox.Text);
-                        gasCigs.Text = TextBoxBackingFields.GasCigs.ToString();
+                        //gasCigs.Text = TextBoxBackingFields.GasCigs.ToString();
                     }
                     break;
                 case "dieselCigs":
@@ -283,7 +311,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.DieselCigs = Convert.ToDouble(textBox.Text);
-                        dieselCigs.Text = TextBoxBackingFields.DieselCigs.ToString();
+                        //dieselCigs.Text = TextBoxBackingFields.DieselCigs.ToString();
                     }
                     break;
                 case "mclaneCigs":
@@ -294,7 +322,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.MclaneCigs = Convert.ToDouble(textBox.Text);
-                        mclaneCigs.Text = TextBoxBackingFields.MclaneCigs.ToString();
+                        //mclaneCigs.Text = TextBoxBackingFields.MclaneCigs.ToString();
                     }
                     break;
                 case "officeCigs":
@@ -305,7 +333,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.OfficeCigs = Convert.ToDouble(textBox.Text);
-                        officeCigs.Text = TextBoxBackingFields.OfficeCigs.ToString();
+                        //officeCigs.Text = TextBoxBackingFields.OfficeCigs.ToString();
                     }
                     break;
                 case "cashierVariance1":
@@ -316,7 +344,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance1 = Convert.ToDouble(textBox.Text);
-                        cashierVariance1.Text = TextBoxBackingFields.CashierVariance1.ToString();
+                        //cashierVariance1.Text = TextBoxBackingFields.CashierVariance1.ToString();
                     }
                     break;
                 case "cashierVariance2":
@@ -327,7 +355,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance2 = Convert.ToDouble(textBox.Text);
-                        cashierVariance2.Text = TextBoxBackingFields.CashierVariance2.ToString();
+                        //cashierVariance2.Text = TextBoxBackingFields.CashierVariance2.ToString();
                     }
                     break;
                 case "cashierVariance3":
@@ -338,7 +366,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance3 = Convert.ToDouble(textBox.Text);
-                        cashierVariance3.Text = TextBoxBackingFields.CashierVariance3.ToString();
+                        //cashierVariance3.Text = TextBoxBackingFields.CashierVariance3.ToString();
                     }
                     break;
                 case "cashierVariance4":
@@ -349,7 +377,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance4 = Convert.ToDouble(textBox.Text);
-                        cashierVariance4.Text = TextBoxBackingFields.CashierVariance4.ToString();
+                        //cashierVariance4.Text = TextBoxBackingFields.CashierVariance4.ToString();
                     }
                     break;
                 case "cashierVariance5":
@@ -360,7 +388,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance5 = Convert.ToDouble(textBox.Text);
-                        cashierVariance5.Text = TextBoxBackingFields.CashierVariance5.ToString();
+                        //cashierVariance5.Text = TextBoxBackingFields.CashierVariance5.ToString();
                     }
                     break;
                 case "cashierVariance6":
@@ -371,7 +399,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance6 = Convert.ToDouble(textBox.Text);
-                        cashierVariance6.Text = TextBoxBackingFields.CashierVariance6.ToString();
+                        //cashierVariance6.Text = TextBoxBackingFields.CashierVariance6.ToString();
                     }
                     break;
                 case "cashierVariance7":
@@ -382,7 +410,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance7 = Convert.ToDouble(textBox.Text);
-                        cashierVariance7.Text = TextBoxBackingFields.CashierVariance7.ToString();
+                        //cashierVariance7.Text = TextBoxBackingFields.CashierVariance7.ToString();
                     }
                     break;
                 case "cashierVariance8":
@@ -393,7 +421,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance8 = Convert.ToDouble(textBox.Text);
-                        cashierVariance8.Text = TextBoxBackingFields.CashierVariance8.ToString();
+                        //cashierVariance8.Text = TextBoxBackingFields.CashierVariance8.ToString();
                     }
                     break;
                 case "cashierVariance9":
@@ -404,7 +432,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance9 = Convert.ToDouble(textBox.Text);
-                        cashierVariance9.Text = TextBoxBackingFields.CashierVariance9.ToString();
+                        //cashierVariance9.Text = TextBoxBackingFields.CashierVariance9.ToString();
                     }
                     break;
                 case "cashierVariance10":
@@ -415,7 +443,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierVariance10 = Convert.ToDouble(textBox.Text);
-                        cashierVariance10.Text = TextBoxBackingFields.CashierVariance10.ToString();
+                        //cashierVariance10.Text = TextBoxBackingFields.CashierVariance10.ToString();
                     }
                     break;
                 case "cashierDrops1":
@@ -426,7 +454,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops1 = Convert.ToDouble(textBox.Text);
-                        cashierDrops1.Text = TextBoxBackingFields.CashierDrops1.ToString();
+                        //cashierDrops1.Text = TextBoxBackingFields.CashierDrops1.ToString();
                     }
                     break;
                 case "cashierDrops2":
@@ -437,7 +465,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops2 = Convert.ToDouble(textBox.Text);
-                        cashierDrops2.Text = TextBoxBackingFields.CashierDrops2.ToString();
+                        //cashierDrops2.Text = TextBoxBackingFields.CashierDrops2.ToString();
                     }
                     break;
                 case "cashierDrops3":
@@ -448,7 +476,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops3 = Convert.ToDouble(textBox.Text);
-                        cashierDrops3.Text = TextBoxBackingFields.CashierDrops3.ToString();
+                        //cashierDrops3.Text = TextBoxBackingFields.CashierDrops3.ToString();
                     }
                     break;
                 case "cashierDrops4":
@@ -459,7 +487,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops4 = Convert.ToDouble(textBox.Text);
-                        cashierDrops4.Text = TextBoxBackingFields.CashierDrops4.ToString();
+                        //cashierDrops4.Text = TextBoxBackingFields.CashierDrops4.ToString();
                     }
                     break;
                 case "cashierDrops5":
@@ -470,7 +498,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops5 = Convert.ToDouble(textBox.Text);
-                        cashierDrops5.Text = TextBoxBackingFields.CashierDrops5.ToString();
+                        //cashierDrops5.Text = TextBoxBackingFields.CashierDrops5.ToString();
                     }
                     break;
                 case "cashierDrops6":
@@ -481,7 +509,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops6 = Convert.ToDouble(textBox.Text);
-                        cashierDrops6.Text = TextBoxBackingFields.CashierDrops6.ToString();
+                        //cashierDrops6.Text = TextBoxBackingFields.CashierDrops6.ToString();
                     }
                     break;
                 case "cashierDrops7":
@@ -492,7 +520,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops7 = Convert.ToDouble(textBox.Text);
-                        cashierDrops7.Text = TextBoxBackingFields.CashierDrops7.ToString();
+                        //cashierDrops7.Text = TextBoxBackingFields.CashierDrops7.ToString();
                     }
                     break;
                 case "cashierDrops8":
@@ -503,7 +531,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops8 = Convert.ToDouble(textBox.Text);
-                        cashierDrops8.Text = TextBoxBackingFields.CashierDrops8.ToString();
+                        //cashierDrops8.Text = TextBoxBackingFields.CashierDrops8.ToString();
                     }
                     break;
                 case "cashierDrops9":
@@ -514,7 +542,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops9 = Convert.ToDouble(textBox.Text);
-                        cashierDrops9.Text = TextBoxBackingFields.CashierDrops9.ToString();
+                        //cashierDrops9.Text = TextBoxBackingFields.CashierDrops9.ToString();
                     }
                     break;
                 case "cashierDrops10":
@@ -525,7 +553,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierDrops10 = Convert.ToDouble(textBox.Text);
-                        cashierDrops10.Text = TextBoxBackingFields.CashierDrops10.ToString();
+                        //cashierDrops10.Text = TextBoxBackingFields.CashierDrops10.ToString();
                     }
                     break;
                 case "cashierChange1":
@@ -536,7 +564,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange1 = Convert.ToDouble(textBox.Text);
-                        cashierChange1.Text = TextBoxBackingFields.CashierChange1.ToString();
+                        //cashierChange1.Text = TextBoxBackingFields.CashierChange1.ToString();
                     }
                     break;
                 case "cashierChange2":
@@ -547,7 +575,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange2 = Convert.ToDouble(textBox.Text);
-                        cashierChange2.Text = TextBoxBackingFields.CashierChange2.ToString();
+                        //cashierChange2.Text = TextBoxBackingFields.CashierChange2.ToString();
                     }
                     break;
                 case "cashierChange3":
@@ -558,7 +586,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange3 = Convert.ToDouble(textBox.Text);
-                        cashierChange3.Text = TextBoxBackingFields.CashierChange3.ToString();
+                        //cashierChange3.Text = TextBoxBackingFields.CashierChange3.ToString();
                     }
                     break;
                 case "cashierChange4":
@@ -569,7 +597,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange4 = Convert.ToDouble(textBox.Text);
-                        cashierChange4.Text = TextBoxBackingFields.CashierChange4.ToString();
+                        //cashierChange4.Text = TextBoxBackingFields.CashierChange4.ToString();
                     }
                     break;
                 case "cashierChange5":
@@ -580,7 +608,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange5 = Convert.ToDouble(textBox.Text);
-                        cashierChange5.Text = TextBoxBackingFields.CashierChange5.ToString();
+                        //cashierChange5.Text = TextBoxBackingFields.CashierChange5.ToString();
                     }
                     break;
                 case "cashierChange6":
@@ -591,7 +619,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange6 = Convert.ToDouble(textBox.Text);
-                        cashierChange6.Text = TextBoxBackingFields.CashierChange6.ToString();
+                        //cashierChange6.Text = TextBoxBackingFields.CashierChange6.ToString();
                     }
                     break;
                 case "cashierChange7":
@@ -602,7 +630,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange7 = Convert.ToDouble(textBox.Text);
-                        cashierChange7.Text = TextBoxBackingFields.CashierChange7.ToString();
+                        //cashierChange7.Text = TextBoxBackingFields.CashierChange7.ToString();
                     }
                     break;
                 case "cashierChange8":
@@ -613,7 +641,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange8 = Convert.ToDouble(textBox.Text);
-                        cashierChange8.Text = TextBoxBackingFields.CashierChange8.ToString();
+                        //cashierChange8.Text = TextBoxBackingFields.CashierChange8.ToString();
                     }
                     break;
                 case "cashierChange9":
@@ -624,7 +652,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange9 = Convert.ToDouble(textBox.Text);
-                        cashierChange9.Text = TextBoxBackingFields.CashierChange9.ToString();
+                        //cashierChange9.Text = TextBoxBackingFields.CashierChange9.ToString();
                     }
                     break;
                 case "cashierChange10":
@@ -635,7 +663,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.CashierChange10 = Convert.ToDouble(textBox.Text);
-                        cashierChange10.Text = TextBoxBackingFields.CashierChange10.ToString();
+                        //cashierChange10.Text = TextBoxBackingFields.CashierChange10.ToString();
                     }
                     break;
                 case "cashierChecks":
@@ -646,7 +674,7 @@ namespace _711PWAssistant
                     else
                     {
                         TextBoxBackingFields.Checks = Convert.ToDouble(textBox.Text);
-                        cashierChecks.Text = TextBoxBackingFields.Checks.ToString();
+                        //cashierChecks.Text = TextBoxBackingFields.Checks.ToString();
                     }
                     break;
             }
@@ -677,10 +705,66 @@ namespace _711PWAssistant
             TextBoxBackingFields.InstantPaidOut = instantPaidout.Text;
             TextBoxBackingFields.InstantSales = instantSales.Text;
 
+            TextBoxBackingFields.StorePaidOut = storePaidOut.Text;
+            TextBoxBackingFields.AmbestRedeem = ambestRedeem.Text;
+            TextBoxBackingFields.Incentive = employeeIncentive.Text;
+            TextBoxBackingFields.Coupons = coupons.Text;
+            TextBoxBackingFields.Overrun = overrun.Text;
+            TextBoxBackingFields.Reimbursement = reimbursement.Text;
+
+            TextBoxBackingFields.FuelType1 = fuelPicker1.Text;
+            TextBoxBackingFields.BillOfLading1 = billOfLading1.Text;
+            TextBoxBackingFields.NetFuel1 = netFuel1.Text;
+            TextBoxBackingFields.GrossFuel1 = grossFuel1.Text;
+
+            TextBoxBackingFields.FuelType2 = fuelPicker2.Text;
+            TextBoxBackingFields.BillOfLading2 = billOfLading2.Text;
+            TextBoxBackingFields.NetFuel2 = netFuel2.Text;
+            TextBoxBackingFields.GrossFuel2 = grossFuel2.Text;
+
+            TextBoxBackingFields.FuelType3 = fuelPicker3.Text;
+            TextBoxBackingFields.BillOfLading3 = billOfLading3.Text;
+            TextBoxBackingFields.NetFuel3 = netFuel3.Text;
+            TextBoxBackingFields.GrossFuel3 = grossFuel3.Text;
+
+            TextBoxBackingFields.FuelType4 = fuelPicker4.Text;
+            TextBoxBackingFields.BillOfLading4 = billOfLading4.Text;
+            TextBoxBackingFields.NetFuel4 = netFuel4.Text;
+            TextBoxBackingFields.GrossFuel4 = grossFuel4.Text;
+
+            TextBoxBackingFields.FuelType5 = fuelPicker5.Text;
+            TextBoxBackingFields.BillOfLading5 = billOfLading5.Text;
+            TextBoxBackingFields.NetFuel5 = netFuel5.Text;
+            TextBoxBackingFields.GrossFuel5 = grossFuel5.Text;
+
+            TextBoxBackingFields.FuelType6 = fuelPicker6.Text;
+            TextBoxBackingFields.BillOfLading6 = billOfLading6.Text;
+            TextBoxBackingFields.NetFuel6 = netFuel6.Text;
+            TextBoxBackingFields.GrossFuel6 = grossFuel6.Text;
+
+            TextBoxBackingFields.FuelType7 = fuelPicker7.Text;
+            TextBoxBackingFields.BillOfLading7 = billOfLading7.Text;
+            TextBoxBackingFields.NetFuel7 = netFuel7.Text;
+            TextBoxBackingFields.GrossFuel7 = grossFuel7.Text;
+
+            TextBoxBackingFields.FuelType8 = fuelPicker8.Text;
+            TextBoxBackingFields.BillOfLading8 = billOfLading8.Text;
+            TextBoxBackingFields.NetFuel8 = netFuel8.Text;
+            TextBoxBackingFields.GrossFuel8 = grossFuel8.Text;
+
             CalculateTotals();
         }
         private void CalculateTotals()
         {
+            double cashierChangeTotalDouble = TextBoxBackingFields.CashierChange1 + TextBoxBackingFields.CashierChange2 +
+                                              TextBoxBackingFields.CashierChange3 + TextBoxBackingFields.CashierChange4 +
+                                              TextBoxBackingFields.CashierChange5 + TextBoxBackingFields.CashierChange6 +
+                                              TextBoxBackingFields.CashierChange7 + TextBoxBackingFields.CashierChange8 +
+                                              TextBoxBackingFields.CashierChange9 + TextBoxBackingFields.CashierChange10;
+            TextBoxBackingFields.ChangeTotal = cashierChangeTotalDouble;
+            cashierChangeTotal.Text = cashierChangeTotalDouble.ToString("C");
+            cashierChangeBroughtToSafeTotals.Text = cashierChangeTotal.Text;
+
             double SafeTotalsCalculated =
                 Convert.ToDouble(backPenniesCalculated.Text.Trim('$', '(', ')')) + Convert.ToDouble(frontPenniesCalculated.Text.Trim('$', '(', ')')) +
                 Convert.ToDouble(backNicklesCalculated.Text.Trim('$', '(', ')')) + Convert.ToDouble(frontNicklesCalculated.Text.Trim('$', '(', ')')) +
@@ -693,21 +777,9 @@ namespace _711PWAssistant
 
 
             SafeTotalsCalculated += TextBoxBackingFields.OfficeSafe + TextBoxBackingFields.GasDrawer +
-                                    TextBoxBackingFields.DieselDrawer;
+                                    TextBoxBackingFields.DieselDrawer + TextBoxBackingFields.ChangeTotal;
             TextBoxBackingFields.TotalSafe = SafeTotalsCalculated;
             
-            TotalSafe.Text = SafeTotalsCalculated.ToString("C");
-
-            double cashierChangeTotalDouble = TextBoxBackingFields.CashierChange1 + TextBoxBackingFields.CashierChange2 +
-                                              TextBoxBackingFields.CashierChange3 + TextBoxBackingFields.CashierChange4 +
-                                              TextBoxBackingFields.CashierChange5 + TextBoxBackingFields.CashierChange6 +
-                                              TextBoxBackingFields.CashierChange7 + TextBoxBackingFields.CashierChange8 +
-                                              TextBoxBackingFields.CashierChange9 + TextBoxBackingFields.CashierChange10;
-            TextBoxBackingFields.ChangeTotal = cashierChangeTotalDouble;
-            cashierChangeTotal.Text = cashierChangeTotalDouble.ToString("C");
-            cashierChangeBroughtToSafeTotals.Text = cashierChangeTotal.Text;
-
-            SafeTotalsCalculated += TextBoxBackingFields.ChangeTotal;
             TotalSafe.Text = SafeTotalsCalculated.ToString("C");
 
             double cashierDropsDouble = TextBoxBackingFields.CashierDrops1 + TextBoxBackingFields.CashierDrops2 +
@@ -738,13 +810,13 @@ namespace _711PWAssistant
         private void textboxInputChecker(object sender, KeyEventArgs e)
         {
             TextBox txbx = (TextBox)sender;
-            string minusindex;
-            minusindex = txbx.Text;
 
-            if ((e.KeyValue >= 48 && e.KeyValue <= 57 || e.KeyValue >= 96 && e.KeyValue <= 105 || e.KeyCode == Keys.Subtract || e.KeyCode == Keys.Back || e.KeyCode == Keys.OemPeriod || e.KeyCode == Keys.Decimal || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.OemMinus) && e.Shift == false)
+
+            if ((e.KeyValue >= 48 && e.KeyValue <= 57 || e.KeyValue >= 96 && e.KeyValue <= 105 || e.KeyCode == Keys.Subtract || e.KeyCode == Keys.Back || e.KeyCode == Keys.OemPeriod || e.KeyCode == Keys.Decimal || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.OemMinus || e.KeyCode == Keys.Back) && e.Shift == false)
             {
-                if (txbx.Text.Contains('.') && e.KeyCode == Keys.OemPeriod || txbx.Text.Contains('.') && e.KeyCode == Keys.Decimal || txbx.Text.Contains('-') && e.KeyCode == Keys.OemMinus || txbx.SelectionStart != 0 && e.KeyCode == Keys.OemMinus || txbx.SelectionStart != 0 && e.KeyCode == Keys.Subtract || txbx.SelectionStart <= minusindex.IndexOf('-') && e.KeyValue >= 48 && e.KeyValue <= 57 || txbx.SelectionStart <= minusindex.IndexOf('-') && e.KeyValue >= 96 && e.KeyValue <= 105)
+                if (txbx.Text.Contains('.') && e.KeyCode == Keys.OemPeriod || txbx.Text.Contains('.') && e.KeyCode == Keys.Decimal || txbx.Text.Contains('-') && e.KeyCode == Keys.OemMinus || txbx.SelectionStart != 0 && e.KeyCode == Keys.OemMinus || txbx.SelectionStart != 0 && e.KeyCode == Keys.Subtract || txbx.SelectionStart <= txbx.Text.IndexOf('-') && e.KeyValue >= 48 && e.KeyValue <= 57 || txbx.SelectionStart <= txbx.Text.IndexOf('-') && e.KeyValue >= 96 && e.KeyValue <= 105 || txbx.SelectionStart <= txbx.Text.IndexOf('-') && e.KeyCode == Keys.Subtract|| txbx.SelectionStart == 0 && txbx.Text.Contains('-') && e.KeyCode == Keys.Decimal || txbx.SelectionStart == 0 && txbx.Text.Contains('-') && e.KeyCode == Keys.OemPeriod)
                 {
+                    
                     e.SuppressKeyPress = true;
                 }
                 else
@@ -773,24 +845,9 @@ namespace _711PWAssistant
             }
         }
 
-        private void saveButton(object sender, EventArgs e)
-        {
-            if(File.Exists(filepath + DateTime.Today.ToString("MM-dd-yyy") + " PWS.bin"))
-            {
-                if(MessageBox.Show(this.Owner, "Saving this sheet will overwrite an existing PWS file.", "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    Serialize();
-                }
-            }
-            else if(!File.Exists(filepath + DateTime.Today.ToString("MM-dd-yyy") + " PWS.bin"))
-            {
-                Serialize();
-            }
-        }
         private void Serialize()
         {
-            Directory.CreateDirectory(filepath);
-            Stream objStream = new FileStream(filepath + DateTime.Today.ToString("MM-dd-yyy") + " PWS.bin", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+            Stream objStream = new FileStream(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString() + Convert.ToDateTime(currentPWSLabel.Text).ToString("MM-dd-yyy") + " PWS.bin", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
             
             formValues = new Form_Values();
 
@@ -799,22 +856,8 @@ namespace _711PWAssistant
             binaryFormatter.Serialize(objStream, formValues);
             objStream.Close();
         }
-        private void DeSerialize_Click(object sender, EventArgs e)
-        {
-            Stream objStreamDeSerialize = new FileStream(filepath + DateTime.Today.ToString("MM-dd-yyyy") +" PWS.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            formValues = (Form_Values)binaryFormatter.Deserialize(objStreamDeSerialize);
-
-            DeserializeFormValues();
-            
-            objStreamDeSerialize.Close();
-        }
         private void DeserializeFormValues()
         {
-            foreach(TextBox textBox in Controls.OfType<TextBox>())
-            {
-                textBox.Text = "";
-            }
-
             cashierChange1.Text = formValues.cashierValues[0].CashierChange;
             cashierChange2.Text = formValues.cashierValues[1].CashierChange;
             cashierChange3.Text = formValues.cashierValues[2].CashierChange;
@@ -919,6 +962,8 @@ namespace _711PWAssistant
             coupons.Text = formValues.miscSales.Coupons;
             employeeIncentive.Text = formValues.miscSales.EmployeeIncentive;
             storePaidOut.Text = formValues.miscSales.StorePaidOut;
+            overrun.Text = formValues.miscSales.Overrun;
+            reimbursement.Text = formValues.miscSales.Reimbursement;
 
             highFeedstock.Text = formValues.totalizers.HighFeedstock;
             lowFeedstock.Text = formValues.totalizers.LowFeedstock;
@@ -953,6 +998,32 @@ namespace _711PWAssistant
             gasDrawer.Text = formValues.safeTotals.GasDrawer;
             officeSafe.Text = formValues.safeTotals.OfficeSafe;
             TotalSafe.Text = formValues.safeTotals.TotalSafe;
+
+            TextBoxBackingFields.UnleadedEthanolDollars = formValues.pumpTests.UnleadedEthanolDollars;
+            TextBoxBackingFields.PremiumEthanolDollars = formValues.pumpTests.PremiumEthanolDollars;
+            TextBoxBackingFields.MidgradeEthanolDollars = formValues.pumpTests.MidgradeEthanolDollars;
+            TextBoxBackingFields.DefDollars = formValues.pumpTests.DefDollars;
+            TextBoxBackingFields.UltraDollars = formValues.pumpTests.UltraDollars;
+            TextBoxBackingFields.DieselDollars = formValues.pumpTests.DieselDollars;
+            pumpTests.unleadedDollars.Text = formValues.pumpTests.UnleadedEthanolDollars;
+            pumpTests.premiumDollars.Text = formValues.pumpTests.PremiumEthanolDollars;
+            pumpTests.midgradeDollars.Text = formValues.pumpTests.MidgradeEthanolDollars;
+            pumpTests.defDollars.Text = formValues.pumpTests.DefDollars;
+            pumpTests.ultraDollars.Text = formValues.pumpTests.UltraDollars;
+            pumpTests.dieselDollars.Text = formValues.pumpTests.DieselDollars;
+
+            TextBoxBackingFields.UnleadedEthanolUnits = formValues.pumpTests.UnleadedEthanolUnits;
+            TextBoxBackingFields.PremiumEthanolUnits = formValues.pumpTests.PremiumEthanolUnits;
+            TextBoxBackingFields.MidgradeEthanolUnits = formValues.pumpTests.MidgradeEthanolUnits;
+            TextBoxBackingFields.DefUnits = formValues.pumpTests.DefUnits;
+            TextBoxBackingFields.UltraUnits = formValues.pumpTests.UltraUnits;
+            TextBoxBackingFields.DieselUnits = formValues.pumpTests.DieselUnits;
+            pumpTests.unleadedUnits.Text = formValues.pumpTests.UnleadedEthanolUnits;
+            pumpTests.premiumUnits.Text = formValues.pumpTests.PremiumEthanolUnits;
+            pumpTests.midgradeUnits.Text = formValues.pumpTests.MidgradeEthanolUnits;
+            pumpTests.defUnits.Text = formValues.pumpTests.DefUnits;
+            pumpTests.ultraUnits.Text = formValues.pumpTests.UltraUnits;
+            pumpTests.dieselUnits.Text = formValues.pumpTests.DieselUnits;
         }
         private void SerializeFormValues()
         {
@@ -1060,6 +1131,8 @@ namespace _711PWAssistant
             formValues.miscSales.Coupons = coupons.Text;
             formValues.miscSales.EmployeeIncentive = employeeIncentive.Text;
             formValues.miscSales.StorePaidOut = storePaidOut.Text;
+            formValues.miscSales.Overrun = overrun.Text;
+            formValues.miscSales.Reimbursement = reimbursement.Text;
 
             formValues.totalizers.HighFeedstock = highFeedstock.Text;
             formValues.totalizers.LowFeedstock = lowFeedstock.Text;
@@ -1094,12 +1167,43 @@ namespace _711PWAssistant
             formValues.safeTotals.GasDrawer = gasDrawer.Text;
             formValues.safeTotals.OfficeSafe = officeSafe.Text;
             formValues.safeTotals.TotalSafe = TotalSafe.Text;
+
+
+            formValues.pumpTests.UnleadedEthanolDollars = TextBoxBackingFields.UnleadedEthanolDollars;
+            formValues.pumpTests.PremiumEthanolDollars = TextBoxBackingFields.PremiumEthanolDollars;
+            formValues.pumpTests.MidgradeEthanolDollars = TextBoxBackingFields.MidgradeEthanolDollars;
+            formValues.pumpTests.DefDollars = TextBoxBackingFields.DefDollars;
+            formValues.pumpTests.UltraDollars = TextBoxBackingFields.UltraDollars;
+            formValues.pumpTests.DieselDollars = TextBoxBackingFields.DieselDollars;
+
+            formValues.pumpTests.UnleadedEthanolUnits = TextBoxBackingFields.UnleadedEthanolUnits;
+            formValues.pumpTests.PremiumEthanolUnits = TextBoxBackingFields.PremiumEthanolUnits;
+            formValues.pumpTests.MidgradeEthanolUnits = TextBoxBackingFields.MidgradeEthanolUnits;
+            formValues.pumpTests.DefUnits = TextBoxBackingFields.DefUnits;
+            formValues.pumpTests.UltraUnits = TextBoxBackingFields.UltraUnits;
+            formValues.pumpTests.DieselUnits = TextBoxBackingFields.DieselUnits;
         }
 
-        private void selectPws_Click(object sender, EventArgs e)
+        private void SavePWSToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (File.Exists(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString() + Convert.ToDateTime(currentPWSLabel.Text).ToString("MM-dd-yyy") + " PWS.bin"))
+            {
+                if (MessageBox.Show(this.Owner, "Saving this sheet will overwrite an existing PWS file.", "Warning", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    Serialize();
+                }
+            }
+            else if (!File.Exists(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString() + Convert.ToDateTime(currentPWSLabel.Text).ToString("MM-dd-yyy") + " PWS.bin"))
+            {
+                Serialize();
+            }
+        }
+
+        private void OpenPWSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBoxBackingFields.ClearAllFields();
             DateTime date;
-            if(dateForm.ShowDialog() == DialogResult.OK)
+            if (dateForm.ShowDialog() == DialogResult.OK)
             {
                 if (MessageBox.Show("Displaying a different PWS will clear your current form.\nDo you want to continue?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -1111,7 +1215,7 @@ namespace _711PWAssistant
                         {
                             textBox.Text = "";
                         }
-                        Stream objStreamDeSerialize = new FileStream(filepath + dateForm.pwsDate + " PWS.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                        Stream objStreamDeSerialize = new FileStream(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString() + Convert.ToDateTime(currentPWSLabel.Text).ToString("MM-dd-yyy") + " PWS.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
                         formValues = (Form_Values)binaryFormatter.Deserialize(objStreamDeSerialize);
 
                         DeserializeFormValues();
@@ -1125,9 +1229,176 @@ namespace _711PWAssistant
                 }
             }
         }
-        private void printButton_Click(object sender, EventArgs e)
+        private void SelectUponTab(object sender, EventArgs e)
         {
-            PDFFormatter pdfFormatter = new PDFFormatter();
+            TextBox textBox = (TextBox)sender;
+            textBox.Select(0, textBox.Text.Length);
+        }
+        private void PrintPWSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PDFFormatter pdfFormatter = new PDFFormatter(false);
+        }
+        private void ChangeApplicationFilepathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default["RootFilePath"] = folderBrowserDialog1.SelectedPath.ToString() + "\\7 11 Paperwork Assistant\\";
+                Properties.Settings.Default.Save();
+
+                Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString());
+                Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["PdfFilePath"].ToString());
+                Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["BinFilePath"].ToString());
+                Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["ExceptionFilePath"].ToString());
+                Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["TraceFilePath"].ToString());
+                Directory.CreateDirectory(Properties.Settings.Default["RootFilePath"].ToString() + Properties.Settings.Default["ImgFilePath"].ToString());
+            }
+        }
+
+        private void ChangeTubes_Click(object sender, EventArgs e)
+        {
+            tubesForm.FrontOnes.Text = Properties.Settings.Default["FrontOnes"].ToString();
+            tubesForm.FrontFives.Text = Properties.Settings.Default["FrontFives"].ToString();
+            tubesForm.FrontTens.Text = Properties.Settings.Default["FrontTens"].ToString();
+            tubesForm.FrontTwenties.Text = Properties.Settings.Default["FrontTwenties"].ToString();
+
+            tubesForm.BackOnes.Text = Properties.Settings.Default["BackOnes"].ToString();
+            tubesForm.BackFives.Text = Properties.Settings.Default["BackFives"].ToString();
+            tubesForm.BackTens.Text = Properties.Settings.Default["BackTens"].ToString();
+            tubesForm.BackTwenties.Text = Properties.Settings.Default["BackTwenties"].ToString();
+
+            if(tubesForm.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default["FrontOnes"] = Convert.ToDouble(tubesForm.FrontOnes.Text);
+                Properties.Settings.Default["FrontFives"] = Convert.ToDouble(tubesForm.FrontFives.Text);
+                Properties.Settings.Default["FrontTens"] = Convert.ToDouble(tubesForm.FrontTens.Text);
+                Properties.Settings.Default["FrontTwenties"] = Convert.ToDouble(tubesForm.FrontTwenties.Text);
+
+                Properties.Settings.Default["BackOnes"] = Convert.ToDouble(tubesForm.BackOnes.Text);
+                Properties.Settings.Default["BackFives"] = Convert.ToDouble(tubesForm.BackFives.Text);
+                Properties.Settings.Default["BackTens"] = Convert.ToDouble(tubesForm.BackTens.Text);
+                Properties.Settings.Default["BackTwenties"] = Convert.ToDouble(tubesForm.BackTwenties.Text);
+
+                Properties.Settings.Default.Save();
+
+                textChanged(onesFrontSafe, e);
+                textChanged(fivesFrontSafe, e);
+                textChanged(tensFrontSafe, e);
+                textChanged(twentiesFrontSafe, e);
+
+                textChanged(onesBackSafe, e);
+                textChanged(fivesBackSafe, e);
+                textChanged(tensBackSafe, e);
+                textChanged(twentiesBackSafe, e);
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (pumpTests.ShowDialog() == DialogResult.OK)
+            {
+                if (pumpTests.unleadedDollars.Text != "")
+                {
+                    TextBoxBackingFields.UnleadedEthanolDollars = pumpTests.unleadedDollars.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.UnleadedEthanolDollars = null;
+                }
+                if (pumpTests.midgradeDollars.Text != "")
+                {
+                    TextBoxBackingFields.MidgradeEthanolDollars = pumpTests.midgradeDollars.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.MidgradeEthanolDollars = null;
+                }
+                if(pumpTests.premiumDollars.Text != "")
+                {
+                    TextBoxBackingFields.PremiumEthanolDollars = pumpTests.premiumDollars.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.PremiumEthanolDollars = null;
+                }
+                if (pumpTests.ultraDollars.Text != "")
+                {
+                    TextBoxBackingFields.UltraDollars = pumpTests.ultraDollars.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.UltraDollars = null;
+                }
+                if (pumpTests.dieselDollars.Text != "")
+                {
+                    TextBoxBackingFields.DieselDollars = pumpTests.dieselDollars.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.DieselDollars = null;
+                }
+                if (pumpTests.defDollars.Text != "")
+                {
+                    TextBoxBackingFields.DefDollars = pumpTests.defDollars.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.DefDollars = null;
+                }
+
+                if (pumpTests.unleadedUnits.Text != "")
+                {
+                    TextBoxBackingFields.UnleadedEthanolUnits = pumpTests.unleadedUnits.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.UnleadedEthanolUnits = null;
+                }
+                if (pumpTests.midgradeUnits.Text != "")
+                {
+                    TextBoxBackingFields.MidgradeEthanolUnits = pumpTests.midgradeUnits.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.MidgradeEthanolUnits = null;
+                }
+                if (pumpTests.premiumUnits.Text != "")
+                {
+                    TextBoxBackingFields.PremiumEthanolUnits = pumpTests.premiumUnits.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.PremiumEthanolUnits = null;
+                }
+                if (pumpTests.ultraUnits.Text != "")
+                {
+                    TextBoxBackingFields.UltraUnits = pumpTests.ultraUnits.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.UltraUnits = null;
+                }
+                if (pumpTests.dieselUnits.Text != "")
+                {
+                    TextBoxBackingFields.DieselUnits = pumpTests.dieselUnits.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.DieselUnits = null;
+                }
+                if (pumpTests.defUnits.Text != "")
+                {
+                    TextBoxBackingFields.DefUnits = pumpTests.defUnits.Text;
+                }
+                else
+                {
+                    TextBoxBackingFields.DefUnits = null;
+                }
+            }
+        }
+
+        private void PrintPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PDFFormatter pdfFormatter = new PDFFormatter(true);
         }
     }
 }

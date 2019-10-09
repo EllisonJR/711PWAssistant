@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.penniesFrontSafe = new System.Windows.Forms.TextBox();
             this.nicklesFrontSafe = new System.Windows.Forms.TextBox();
             this.dimesFrontSafe = new System.Windows.Forms.TextBox();
@@ -204,11 +205,8 @@
             this.label77 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
             this.mclaneCigs = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.currentPWSLabel = new System.Windows.Forms.Label();
-            this.selectPws = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
-            this.printButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.cashierDrops1 = new System.Windows.Forms.TextBox();
             this.cashierDrops2 = new System.Windows.Forms.TextBox();
@@ -245,8 +243,27 @@
             this.billOfLading8 = new System.Windows.Forms.TextBox();
             this.netFuel8 = new System.Windows.Forms.TextBox();
             this.grossFuel8 = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.savePWSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPWSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPWSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeApplicationFilepathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.overrun = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.reimbursement = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // penniesFrontSafe
@@ -260,6 +277,7 @@
             this.penniesFrontSafe.TabIndex = 83;
             this.penniesFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.penniesFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.penniesFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.penniesFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // nicklesFrontSafe
@@ -273,6 +291,7 @@
             this.nicklesFrontSafe.TabIndex = 84;
             this.nicklesFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nicklesFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.nicklesFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.nicklesFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // dimesFrontSafe
@@ -286,6 +305,7 @@
             this.dimesFrontSafe.TabIndex = 85;
             this.dimesFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dimesFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.dimesFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.dimesFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // quartersFrontSafe
@@ -299,6 +319,7 @@
             this.quartersFrontSafe.TabIndex = 86;
             this.quartersFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.quartersFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.quartersFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.quartersFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // onesFrontSafe
@@ -312,6 +333,7 @@
             this.onesFrontSafe.TabIndex = 87;
             this.onesFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.onesFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.onesFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.onesFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // fivesFrontSafe
@@ -325,6 +347,7 @@
             this.fivesFrontSafe.TabIndex = 88;
             this.fivesFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.fivesFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.fivesFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.fivesFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // tensFrontSafe
@@ -338,6 +361,7 @@
             this.tensFrontSafe.TabIndex = 89;
             this.tensFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tensFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.tensFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.tensFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // twentiesFrontSafe
@@ -351,6 +375,7 @@
             this.twentiesFrontSafe.TabIndex = 90;
             this.twentiesFrontSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.twentiesFrontSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.twentiesFrontSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.twentiesFrontSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // twentiesBackSafe
@@ -364,6 +389,7 @@
             this.twentiesBackSafe.TabIndex = 98;
             this.twentiesBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.twentiesBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.twentiesBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.twentiesBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // tensBackSafe
@@ -377,6 +403,7 @@
             this.tensBackSafe.TabIndex = 97;
             this.tensBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.tensBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.tensBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.tensBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // fivesBackSafe
@@ -390,6 +417,7 @@
             this.fivesBackSafe.TabIndex = 96;
             this.fivesBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.fivesBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.fivesBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.fivesBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // onesBackSafe
@@ -403,6 +431,7 @@
             this.onesBackSafe.TabIndex = 95;
             this.onesBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.onesBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.onesBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.onesBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // quartersBackSafe
@@ -416,6 +445,7 @@
             this.quartersBackSafe.TabIndex = 94;
             this.quartersBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.quartersBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.quartersBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.quartersBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // dimesBackSafe
@@ -429,6 +459,7 @@
             this.dimesBackSafe.TabIndex = 93;
             this.dimesBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dimesBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.dimesBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.dimesBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // nicklesBackSafe
@@ -442,6 +473,7 @@
             this.nicklesBackSafe.TabIndex = 92;
             this.nicklesBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nicklesBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.nicklesBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.nicklesBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // penniesBackSafe
@@ -455,6 +487,7 @@
             this.penniesBackSafe.TabIndex = 91;
             this.penniesBackSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.penniesBackSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.penniesBackSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.penniesBackSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // frontPenniesCalculated
@@ -610,6 +643,7 @@
             this.officeSafe.TabIndex = 99;
             this.officeSafe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.officeSafe.TextChanged += new System.EventHandler(this.textChanged);
+            this.officeSafe.Enter += new System.EventHandler(this.SelectUponTab);
             this.officeSafe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label2
@@ -758,6 +792,7 @@
             this.gasDrawer.TabIndex = 100;
             this.gasDrawer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.gasDrawer.TextChanged += new System.EventHandler(this.textChanged);
+            this.gasDrawer.Enter += new System.EventHandler(this.SelectUponTab);
             this.gasDrawer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label15
@@ -778,12 +813,14 @@
             this.dieselDrawer.TabIndex = 101;
             this.dieselDrawer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dieselDrawer.TextChanged += new System.EventHandler(this.textChanged);
+            this.dieselDrawer.Enter += new System.EventHandler(this.SelectUponTab);
             this.dieselDrawer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // fuelPicker1
             // 
             this.fuelPicker1.FormattingEnabled = true;
             this.fuelPicker1.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -793,6 +830,7 @@
             this.fuelPicker1.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker1.TabIndex = 10;
             this.fuelPicker1.Text = "<choose fuel type>";
+            this.fuelPicker1.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // cashierChangeBroughtToSafeTotals
             // 
@@ -897,6 +935,8 @@
             this.billOfLading1.Size = new System.Drawing.Size(95, 20);
             this.billOfLading1.TabIndex = 11;
             this.billOfLading1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading1.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading1.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // billOfLading2
             // 
@@ -905,6 +945,8 @@
             this.billOfLading2.Size = new System.Drawing.Size(95, 20);
             this.billOfLading2.TabIndex = 15;
             this.billOfLading2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading2.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading2.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // billOfLading3
             // 
@@ -913,6 +955,8 @@
             this.billOfLading3.Size = new System.Drawing.Size(95, 20);
             this.billOfLading3.TabIndex = 19;
             this.billOfLading3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading3.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading3.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // billOfLading5
             // 
@@ -921,6 +965,8 @@
             this.billOfLading5.Size = new System.Drawing.Size(95, 20);
             this.billOfLading5.TabIndex = 27;
             this.billOfLading5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading5.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading5.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // billOfLading4
             // 
@@ -929,6 +975,8 @@
             this.billOfLading4.Size = new System.Drawing.Size(95, 20);
             this.billOfLading4.TabIndex = 23;
             this.billOfLading4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading4.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading4.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel5
             // 
@@ -937,6 +985,8 @@
             this.netFuel5.Size = new System.Drawing.Size(95, 20);
             this.netFuel5.TabIndex = 28;
             this.netFuel5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel5.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel5.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel4
             // 
@@ -945,6 +995,8 @@
             this.netFuel4.Size = new System.Drawing.Size(95, 20);
             this.netFuel4.TabIndex = 24;
             this.netFuel4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel4.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel4.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel3
             // 
@@ -953,6 +1005,8 @@
             this.netFuel3.Size = new System.Drawing.Size(95, 20);
             this.netFuel3.TabIndex = 20;
             this.netFuel3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel3.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel3.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel2
             // 
@@ -961,6 +1015,8 @@
             this.netFuel2.Size = new System.Drawing.Size(95, 20);
             this.netFuel2.TabIndex = 16;
             this.netFuel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel2.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel2.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel1
             // 
@@ -969,6 +1025,8 @@
             this.netFuel1.Size = new System.Drawing.Size(95, 20);
             this.netFuel1.TabIndex = 12;
             this.netFuel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel1.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel1.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel5
             // 
@@ -977,6 +1035,8 @@
             this.grossFuel5.Size = new System.Drawing.Size(95, 20);
             this.grossFuel5.TabIndex = 29;
             this.grossFuel5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel5.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel5.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel4
             // 
@@ -985,6 +1045,8 @@
             this.grossFuel4.Size = new System.Drawing.Size(95, 20);
             this.grossFuel4.TabIndex = 25;
             this.grossFuel4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel4.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel4.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel3
             // 
@@ -993,6 +1055,8 @@
             this.grossFuel3.Size = new System.Drawing.Size(95, 20);
             this.grossFuel3.TabIndex = 21;
             this.grossFuel3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel3.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel3.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel2
             // 
@@ -1001,6 +1065,8 @@
             this.grossFuel2.Size = new System.Drawing.Size(95, 20);
             this.grossFuel2.TabIndex = 17;
             this.grossFuel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel2.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel2.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel1
             // 
@@ -1009,6 +1075,8 @@
             this.grossFuel1.Size = new System.Drawing.Size(95, 20);
             this.grossFuel1.TabIndex = 13;
             this.grossFuel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel1.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel1.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // fuelPicker2
             // 
@@ -1023,6 +1091,7 @@
             this.fuelPicker2.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker2.TabIndex = 14;
             this.fuelPicker2.Text = "<choose fuel type>";
+            this.fuelPicker2.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // fuelPicker3
             // 
@@ -1037,6 +1106,7 @@
             this.fuelPicker3.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker3.TabIndex = 18;
             this.fuelPicker3.Text = "<choose fuel type>";
+            this.fuelPicker3.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // fuelPicker4
             // 
@@ -1051,6 +1121,7 @@
             this.fuelPicker4.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker4.TabIndex = 22;
             this.fuelPicker4.Text = "<choose fuel type>";
+            this.fuelPicker4.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // fuelPicker5
             // 
@@ -1065,6 +1136,7 @@
             this.fuelPicker5.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker5.TabIndex = 26;
             this.fuelPicker5.Text = "<choose fuel type>";
+            this.fuelPicker5.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // label26
             // 
@@ -1091,6 +1163,7 @@
             this.cashierName1.Size = new System.Drawing.Size(66, 20);
             this.cashierName1.TabIndex = 42;
             this.cashierName1.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName1.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // label28
             // 
@@ -1110,6 +1183,7 @@
             this.cashierVariance1.TabIndex = 43;
             this.cashierVariance1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance1.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance1.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label29
@@ -1139,6 +1213,7 @@
             this.cashierChange1.TabIndex = 44;
             this.cashierChange1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange1.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange1.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label31
@@ -1159,6 +1234,7 @@
             this.cashierChange2.TabIndex = 48;
             this.cashierChange2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange2.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange2.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierVariance2
@@ -1170,6 +1246,7 @@
             this.cashierVariance2.TabIndex = 47;
             this.cashierVariance2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance2.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance2.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName2
@@ -1179,6 +1256,7 @@
             this.cashierName2.Size = new System.Drawing.Size(66, 20);
             this.cashierName2.TabIndex = 46;
             this.cashierName2.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName2.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierChange4
             // 
@@ -1189,6 +1267,7 @@
             this.cashierChange4.TabIndex = 56;
             this.cashierChange4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange4.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange4.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierVariance4
@@ -1200,6 +1279,7 @@
             this.cashierVariance4.TabIndex = 55;
             this.cashierVariance4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance4.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance4.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName4
@@ -1209,6 +1289,7 @@
             this.cashierName4.Size = new System.Drawing.Size(66, 20);
             this.cashierName4.TabIndex = 54;
             this.cashierName4.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName4.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierChange3
             // 
@@ -1219,6 +1300,7 @@
             this.cashierChange3.TabIndex = 52;
             this.cashierChange3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange3.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange3.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierVariance3
@@ -1230,6 +1312,7 @@
             this.cashierVariance3.TabIndex = 51;
             this.cashierVariance3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance3.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance3.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName3
@@ -1239,6 +1322,7 @@
             this.cashierName3.Size = new System.Drawing.Size(66, 20);
             this.cashierName3.TabIndex = 50;
             this.cashierName3.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName3.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierChange6
             // 
@@ -1249,6 +1333,7 @@
             this.cashierChange6.TabIndex = 64;
             this.cashierChange6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange6.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange6.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierVariance6
@@ -1260,6 +1345,7 @@
             this.cashierVariance6.TabIndex = 63;
             this.cashierVariance6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance6.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance6.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName6
@@ -1269,6 +1355,7 @@
             this.cashierName6.Size = new System.Drawing.Size(66, 20);
             this.cashierName6.TabIndex = 62;
             this.cashierName6.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName6.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierChange5
             // 
@@ -1279,6 +1366,7 @@
             this.cashierChange5.TabIndex = 60;
             this.cashierChange5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange5.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange5.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierVariance5
@@ -1290,6 +1378,7 @@
             this.cashierVariance5.TabIndex = 59;
             this.cashierVariance5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance5.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance5.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName5
@@ -1299,6 +1388,7 @@
             this.cashierName5.Size = new System.Drawing.Size(66, 20);
             this.cashierName5.TabIndex = 58;
             this.cashierName5.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName5.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // label32
             // 
@@ -1353,6 +1443,7 @@
             this.cashierChecks.TabIndex = 82;
             this.cashierChecks.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChecks.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChecks.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChecks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // bankDeposit
@@ -1414,8 +1505,10 @@
             this.onlinePaidout.Name = "onlinePaidout";
             this.onlinePaidout.Size = new System.Drawing.Size(62, 20);
             this.onlinePaidout.TabIndex = 107;
-            this.onlinePaidout.Text = "0";
             this.onlinePaidout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.onlinePaidout.TextChanged += new System.EventHandler(this.textChanged);
+            this.onlinePaidout.Enter += new System.EventHandler(this.SelectUponTab);
+            this.onlinePaidout.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label43
             // 
@@ -1433,8 +1526,10 @@
             this.onlineSales.Name = "onlineSales";
             this.onlineSales.Size = new System.Drawing.Size(62, 20);
             this.onlineSales.TabIndex = 106;
-            this.onlineSales.Text = "0";
             this.onlineSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.onlineSales.TextChanged += new System.EventHandler(this.textChanged);
+            this.onlineSales.Enter += new System.EventHandler(this.SelectUponTab);
+            this.onlineSales.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label44
             // 
@@ -1496,8 +1591,10 @@
             this.instantSales.Name = "instantSales";
             this.instantSales.Size = new System.Drawing.Size(62, 20);
             this.instantSales.TabIndex = 108;
-            this.instantSales.Text = "0";
             this.instantSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.instantSales.TextChanged += new System.EventHandler(this.textChanged);
+            this.instantSales.Enter += new System.EventHandler(this.SelectUponTab);
+            this.instantSales.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // instantPaidout
             // 
@@ -1505,14 +1602,17 @@
             this.instantPaidout.Name = "instantPaidout";
             this.instantPaidout.Size = new System.Drawing.Size(62, 20);
             this.instantPaidout.TabIndex = 109;
-            this.instantPaidout.Text = "0";
             this.instantPaidout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.instantPaidout.UseWaitCursor = true;
+            this.instantPaidout.TextChanged += new System.EventHandler(this.textChanged);
+            this.instantPaidout.Enter += new System.EventHandler(this.SelectUponTab);
+            this.instantPaidout.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label50
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(308, 322);
+            this.label50.Location = new System.Drawing.Point(308, 317);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(40, 17);
             this.label50.TabIndex = 141;
@@ -1521,7 +1621,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(308, 356);
+            this.label51.Location = new System.Drawing.Point(308, 351);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(102, 13);
             this.label51.TabIndex = 142;
@@ -1530,7 +1630,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(308, 382);
+            this.label52.Location = new System.Drawing.Point(308, 377);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(49, 13);
             this.label52.TabIndex = 143;
@@ -1539,7 +1639,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(468, 356);
+            this.label53.Location = new System.Drawing.Point(468, 351);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(79, 13);
             this.label53.TabIndex = 144;
@@ -1547,40 +1647,49 @@
             // 
             // ambestRedeem
             // 
-            this.ambestRedeem.Location = new System.Drawing.Point(416, 349);
+            this.ambestRedeem.Location = new System.Drawing.Point(416, 344);
             this.ambestRedeem.Name = "ambestRedeem";
             this.ambestRedeem.Size = new System.Drawing.Size(44, 20);
             this.ambestRedeem.TabIndex = 102;
             this.ambestRedeem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ambestRedeem.TextChanged += new System.EventHandler(this.textChanged);
+            this.ambestRedeem.Enter += new System.EventHandler(this.SelectUponTab);
+            this.ambestRedeem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // coupons
             // 
-            this.coupons.Location = new System.Drawing.Point(416, 375);
+            this.coupons.Location = new System.Drawing.Point(416, 370);
             this.coupons.Name = "coupons";
             this.coupons.Size = new System.Drawing.Size(44, 20);
             this.coupons.TabIndex = 104;
             this.coupons.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.coupons.TextChanged += new System.EventHandler(this.textChanged);
+            this.coupons.Enter += new System.EventHandler(this.SelectUponTab);
+            this.coupons.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label54
             // 
             this.label54.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label54.Location = new System.Drawing.Point(311, 342);
+            this.label54.Location = new System.Drawing.Point(311, 337);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(284, 2);
             this.label54.TabIndex = 147;
             // 
             // storePaidOut
             // 
-            this.storePaidOut.Location = new System.Drawing.Point(553, 349);
+            this.storePaidOut.Location = new System.Drawing.Point(553, 344);
             this.storePaidOut.Name = "storePaidOut";
             this.storePaidOut.Size = new System.Drawing.Size(41, 20);
             this.storePaidOut.TabIndex = 103;
             this.storePaidOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.storePaidOut.TextChanged += new System.EventHandler(this.textChanged);
+            this.storePaidOut.Enter += new System.EventHandler(this.SelectUponTab);
+            this.storePaidOut.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(468, 382);
+            this.label55.Location = new System.Drawing.Point(468, 377);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(51, 13);
             this.label55.TabIndex = 149;
@@ -1588,11 +1697,14 @@
             // 
             // employeeIncentive
             // 
-            this.employeeIncentive.Location = new System.Drawing.Point(553, 375);
+            this.employeeIncentive.Location = new System.Drawing.Point(553, 370);
             this.employeeIncentive.Name = "employeeIncentive";
             this.employeeIncentive.Size = new System.Drawing.Size(41, 20);
             this.employeeIncentive.TabIndex = 105;
             this.employeeIncentive.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.employeeIncentive.TextChanged += new System.EventHandler(this.textChanged);
+            this.employeeIncentive.Enter += new System.EventHandler(this.SelectUponTab);
+            this.employeeIncentive.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label56
             // 
@@ -1621,6 +1733,7 @@
             this.gasCigs.TabIndex = 110;
             this.gasCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.gasCigs.TextChanged += new System.EventHandler(this.textChanged);
+            this.gasCigs.Enter += new System.EventHandler(this.SelectUponTab);
             this.gasCigs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // dieselCigs
@@ -1632,6 +1745,7 @@
             this.dieselCigs.TabIndex = 111;
             this.dieselCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dieselCigs.TextChanged += new System.EventHandler(this.textChanged);
+            this.dieselCigs.Enter += new System.EventHandler(this.SelectUponTab);
             this.dieselCigs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // officeCigs
@@ -1643,6 +1757,7 @@
             this.officeCigs.TabIndex = 112;
             this.officeCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.officeCigs.TextChanged += new System.EventHandler(this.textChanged);
+            this.officeCigs.Enter += new System.EventHandler(this.SelectUponTab);
             this.officeCigs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // label58
@@ -1715,6 +1830,7 @@
             this.lowFeedstock.TabIndex = 1;
             this.lowFeedstock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lowFeedstock.TextChanged += new System.EventHandler(this.textChanged);
+            this.lowFeedstock.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // label65
             // 
@@ -1742,6 +1858,7 @@
             this.highFeedstock.TabIndex = 2;
             this.highFeedstock.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.highFeedstock.TextChanged += new System.EventHandler(this.textChanged);
+            this.highFeedstock.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // label67
             // 
@@ -1805,6 +1922,7 @@
             this.fiscalDiesel.TabIndex = 4;
             this.fiscalDiesel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.fiscalDiesel.TextChanged += new System.EventHandler(this.textChanged);
+            this.fiscalDiesel.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // radiantDiesel
             // 
@@ -1814,6 +1932,7 @@
             this.radiantDiesel.TabIndex = 3;
             this.radiantDiesel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.radiantDiesel.TextChanged += new System.EventHandler(this.textChanged);
+            this.radiantDiesel.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // def3
             // 
@@ -1823,6 +1942,7 @@
             this.def3.TabIndex = 8;
             this.def3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.def3.TextChanged += new System.EventHandler(this.textChanged);
+            this.def3.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // unleadRace
             // 
@@ -1832,6 +1952,7 @@
             this.unleadRace.TabIndex = 7;
             this.unleadRace.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.unleadRace.TextChanged += new System.EventHandler(this.textChanged);
+            this.unleadRace.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // ultE851
             // 
@@ -1841,6 +1962,7 @@
             this.ultE851.TabIndex = 6;
             this.ultE851.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.ultE851.TextChanged += new System.EventHandler(this.textChanged);
+            this.ultE851.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // dslKer1
             // 
@@ -1850,6 +1972,7 @@
             this.dslKer1.TabIndex = 5;
             this.dslKer1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dslKer1.TextChanged += new System.EventHandler(this.textChanged);
+            this.dslKer1.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // defRec90
             // 
@@ -1859,6 +1982,7 @@
             this.defRec90.TabIndex = 9;
             this.defRec90.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.defRec90.TextChanged += new System.EventHandler(this.textChanged);
+            this.defRec90.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // label73
             // 
@@ -1928,55 +2052,27 @@
             this.mclaneCigs.TabIndex = 113;
             this.mclaneCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mclaneCigs.TextChanged += new System.EventHandler(this.textChanged);
+            this.mclaneCigs.Enter += new System.EventHandler(this.SelectUponTab);
             this.mclaneCigs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 194;
-            this.button1.Text = "Save PWS";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.saveButton);
             // 
             // currentPWSLabel
             // 
             this.currentPWSLabel.AutoSize = true;
-            this.currentPWSLabel.Location = new System.Drawing.Point(736, 9);
+            this.currentPWSLabel.Location = new System.Drawing.Point(736, 6);
             this.currentPWSLabel.Name = "currentPWSLabel";
             this.currentPWSLabel.Size = new System.Drawing.Size(28, 13);
             this.currentPWSLabel.TabIndex = 196;
             this.currentPWSLabel.Text = "date";
             // 
-            // selectPws
-            // 
-            this.selectPws.Location = new System.Drawing.Point(452, 4);
-            this.selectPws.Name = "selectPws";
-            this.selectPws.Size = new System.Drawing.Size(75, 23);
-            this.selectPws.TabIndex = 199;
-            this.selectPws.Text = "Select PWS";
-            this.selectPws.UseVisualStyleBackColor = true;
-            this.selectPws.Click += new System.EventHandler(this.selectPws_Click);
-            // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(533, 9);
+            this.label34.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.label34.Location = new System.Drawing.Point(528, 6);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(202, 13);
             this.label34.TabIndex = 198;
             this.label34.Text = "Displaying Paperwork Set for the Date of:";
-            // 
-            // printButton
-            // 
-            this.printButton.Location = new System.Drawing.Point(99, 4);
-            this.printButton.Name = "printButton";
-            this.printButton.Size = new System.Drawing.Size(75, 23);
-            this.printButton.TabIndex = 197;
-            this.printButton.Text = "Print PWS";
-            this.printButton.UseVisualStyleBackColor = true;
-            this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -2035,6 +2131,7 @@
             this.cashierDrops1.TabIndex = 45;
             this.cashierDrops1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops1.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops1.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops2
@@ -2046,6 +2143,7 @@
             this.cashierDrops2.TabIndex = 49;
             this.cashierDrops2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops2.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops2.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops3
@@ -2057,6 +2155,7 @@
             this.cashierDrops3.TabIndex = 53;
             this.cashierDrops3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops3.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops3.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops4
@@ -2068,6 +2167,7 @@
             this.cashierDrops4.TabIndex = 57;
             this.cashierDrops4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops4.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops4.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops5
@@ -2079,6 +2179,7 @@
             this.cashierDrops5.TabIndex = 61;
             this.cashierDrops5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops5.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops5.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops6
@@ -2090,6 +2191,7 @@
             this.cashierDrops6.TabIndex = 65;
             this.cashierDrops6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops6.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops6.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName7
@@ -2099,6 +2201,7 @@
             this.cashierName7.Size = new System.Drawing.Size(66, 20);
             this.cashierName7.TabIndex = 66;
             this.cashierName7.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName7.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierVariance7
             // 
@@ -2109,6 +2212,7 @@
             this.cashierVariance7.TabIndex = 67;
             this.cashierVariance7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance7.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance7.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierChange7
@@ -2120,6 +2224,7 @@
             this.cashierChange7.TabIndex = 68;
             this.cashierChange7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange7.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange7.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops7
@@ -2131,6 +2236,7 @@
             this.cashierDrops7.TabIndex = 69;
             this.cashierDrops7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops7.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops7.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName8
@@ -2140,6 +2246,7 @@
             this.cashierName8.Size = new System.Drawing.Size(66, 20);
             this.cashierName8.TabIndex = 70;
             this.cashierName8.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName8.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierVariance8
             // 
@@ -2150,6 +2257,7 @@
             this.cashierVariance8.TabIndex = 71;
             this.cashierVariance8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance8.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance8.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierChange8
@@ -2161,6 +2269,7 @@
             this.cashierChange8.TabIndex = 72;
             this.cashierChange8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange8.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange8.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops8
@@ -2172,6 +2281,7 @@
             this.cashierDrops8.TabIndex = 73;
             this.cashierDrops8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops8.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops8.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName9
@@ -2181,6 +2291,7 @@
             this.cashierName9.Size = new System.Drawing.Size(66, 20);
             this.cashierName9.TabIndex = 74;
             this.cashierName9.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName9.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierVariance9
             // 
@@ -2191,6 +2302,7 @@
             this.cashierVariance9.TabIndex = 75;
             this.cashierVariance9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance9.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance9.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierChange9
@@ -2202,6 +2314,7 @@
             this.cashierChange9.TabIndex = 76;
             this.cashierChange9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange9.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange9.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops9
@@ -2213,6 +2326,7 @@
             this.cashierDrops9.TabIndex = 77;
             this.cashierDrops9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops9.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops9.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierName10
@@ -2222,6 +2336,7 @@
             this.cashierName10.Size = new System.Drawing.Size(66, 20);
             this.cashierName10.TabIndex = 78;
             this.cashierName10.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierName10.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // cashierVariance10
             // 
@@ -2232,6 +2347,7 @@
             this.cashierVariance10.TabIndex = 79;
             this.cashierVariance10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierVariance10.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierVariance10.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierVariance10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierChange10
@@ -2243,6 +2359,7 @@
             this.cashierChange10.TabIndex = 80;
             this.cashierChange10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierChange10.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierChange10.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierChange10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // cashierDrops10
@@ -2254,6 +2371,7 @@
             this.cashierDrops10.TabIndex = 81;
             this.cashierDrops10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.cashierDrops10.TextChanged += new System.EventHandler(this.textChanged);
+            this.cashierDrops10.Enter += new System.EventHandler(this.SelectUponTab);
             this.cashierDrops10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             // 
             // flowLayoutPanel2
@@ -2309,6 +2427,7 @@
             this.fuelPicker6.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker6.TabIndex = 30;
             this.fuelPicker6.Text = "<choose fuel type>";
+            this.fuelPicker6.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // billOfLading6
             // 
@@ -2317,6 +2436,8 @@
             this.billOfLading6.Size = new System.Drawing.Size(95, 20);
             this.billOfLading6.TabIndex = 31;
             this.billOfLading6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading6.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading6.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel6
             // 
@@ -2325,6 +2446,8 @@
             this.netFuel6.Size = new System.Drawing.Size(95, 20);
             this.netFuel6.TabIndex = 32;
             this.netFuel6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel6.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel6.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel6
             // 
@@ -2333,6 +2456,8 @@
             this.grossFuel6.Size = new System.Drawing.Size(95, 20);
             this.grossFuel6.TabIndex = 33;
             this.grossFuel6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel6.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel6.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // fuelPicker7
             // 
@@ -2347,6 +2472,7 @@
             this.fuelPicker7.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker7.TabIndex = 34;
             this.fuelPicker7.Text = "<choose fuel type>";
+            this.fuelPicker7.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // billOfLading7
             // 
@@ -2355,6 +2481,8 @@
             this.billOfLading7.Size = new System.Drawing.Size(95, 20);
             this.billOfLading7.TabIndex = 35;
             this.billOfLading7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading7.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading7.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel7
             // 
@@ -2363,6 +2491,8 @@
             this.netFuel7.Size = new System.Drawing.Size(95, 20);
             this.netFuel7.TabIndex = 36;
             this.netFuel7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel7.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel7.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel7
             // 
@@ -2371,6 +2501,8 @@
             this.grossFuel7.Size = new System.Drawing.Size(95, 20);
             this.grossFuel7.TabIndex = 37;
             this.grossFuel7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel7.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel7.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // fuelPicker8
             // 
@@ -2385,6 +2517,7 @@
             this.fuelPicker8.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker8.TabIndex = 38;
             this.fuelPicker8.Text = "<choose fuel type>";
+            this.fuelPicker8.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // billOfLading8
             // 
@@ -2393,6 +2526,8 @@
             this.billOfLading8.Size = new System.Drawing.Size(95, 20);
             this.billOfLading8.TabIndex = 39;
             this.billOfLading8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading8.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading8.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // netFuel8
             // 
@@ -2401,6 +2536,8 @@
             this.netFuel8.Size = new System.Drawing.Size(95, 20);
             this.netFuel8.TabIndex = 40;
             this.netFuel8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel8.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel8.Enter += new System.EventHandler(this.SelectUponTab);
             // 
             // grossFuel8
             // 
@@ -2409,6 +2546,151 @@
             this.grossFuel8.Size = new System.Drawing.Size(95, 20);
             this.grossFuel8.TabIndex = 41;
             this.grossFuel8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel8.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel8.Enter += new System.EventHandler(this.SelectUponTab);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.optionsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(902, 24);
+            this.menuStrip1.TabIndex = 200;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savePWSToolStripMenuItem,
+            this.openPWSToolStripMenuItem,
+            this.printPWSToolStripMenuItem,
+            this.printPreviewToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // savePWSToolStripMenuItem
+            // 
+            this.savePWSToolStripMenuItem.Name = "savePWSToolStripMenuItem";
+            this.savePWSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.savePWSToolStripMenuItem.Text = "Save Current PWS";
+            this.savePWSToolStripMenuItem.Click += new System.EventHandler(this.SavePWSToolStripMenuItem_Click);
+            // 
+            // openPWSToolStripMenuItem
+            // 
+            this.openPWSToolStripMenuItem.Name = "openPWSToolStripMenuItem";
+            this.openPWSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.openPWSToolStripMenuItem.Text = "Open Previous PWS";
+            this.openPWSToolStripMenuItem.Click += new System.EventHandler(this.OpenPWSToolStripMenuItem_Click);
+            // 
+            // printPWSToolStripMenuItem
+            // 
+            this.printPWSToolStripMenuItem.Name = "printPWSToolStripMenuItem";
+            this.printPWSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.printPWSToolStripMenuItem.Text = "Print Current PWS";
+            this.printPWSToolStripMenuItem.Click += new System.EventHandler(this.PrintPWSToolStripMenuItem_Click);
+            // 
+            // printPreviewToolStripMenuItem
+            // 
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.printPreviewToolStripMenuItem.Text = "Print Preview";
+            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.PrintPreviewToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeApplicationFilepathToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // changeApplicationFilepathToolStripMenuItem
+            // 
+            this.changeApplicationFilepathToolStripMenuItem.Name = "changeApplicationFilepathToolStripMenuItem";
+            this.changeApplicationFilepathToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.changeApplicationFilepathToolStripMenuItem.Text = "PWS FilePath";
+            this.changeApplicationFilepathToolStripMenuItem.Click += new System.EventHandler(this.ChangeApplicationFilepathToolStripMenuItem_Click);
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.Description = "Select a location to save PWS files";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(145, 398);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 201;
+            this.button1.Text = "Pump Tests";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(799, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 23);
+            this.button2.TabIndex = 202;
+            this.button2.Text = "Tube Amounts";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ChangeTubes_Click);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(595, 317);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(127, 123);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 203;
+            this.pictureBox1.TabStop = false;
+            // 
+            // overrun
+            // 
+            this.overrun.Location = new System.Drawing.Point(553, 395);
+            this.overrun.Name = "overrun";
+            this.overrun.Size = new System.Drawing.Size(41, 20);
+            this.overrun.TabIndex = 205;
+            this.overrun.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.overrun.TextChanged += new System.EventHandler(this.textChanged);
+            this.overrun.Enter += new System.EventHandler(this.SelectUponTab);
+            this.overrun.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(468, 402);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(45, 13);
+            this.label35.TabIndex = 207;
+            this.label35.Text = "Overrun";
+            // 
+            // reimbursement
+            // 
+            this.reimbursement.Location = new System.Drawing.Point(416, 395);
+            this.reimbursement.Name = "reimbursement";
+            this.reimbursement.Size = new System.Drawing.Size(44, 20);
+            this.reimbursement.TabIndex = 204;
+            this.reimbursement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.reimbursement.TextChanged += new System.EventHandler(this.textChanged);
+            this.reimbursement.Enter += new System.EventHandler(this.SelectUponTab);
+            this.reimbursement.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(308, 402);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(80, 13);
+            this.label36.TabIndex = 206;
+            this.label36.Text = "Reimbursement";
             // 
             // Form1
             // 
@@ -2417,13 +2699,17 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.MenuBar;
             this.ClientSize = new System.Drawing.Size(902, 596);
+            this.Controls.Add(this.overrun);
+            this.Controls.Add(this.label35);
+            this.Controls.Add(this.reimbursement);
+            this.Controls.Add(this.label36);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.printButton);
             this.Controls.Add(this.label34);
-            this.Controls.Add(this.selectPws);
             this.Controls.Add(this.currentPWSLabel);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.mclaneCigs);
             this.Controls.Add(this.label78);
             this.Controls.Add(this.label77);
@@ -2562,15 +2848,23 @@
             this.Controls.Add(this.dimesFrontSafe);
             this.Controls.Add(this.nicklesFrontSafe);
             this.Controls.Add(this.penniesFrontSafe);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "7-11 Paperwork Assistant";
+            this.Enter += new System.EventHandler(this.SelectUponTab);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxInputChecker);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2754,11 +3048,8 @@
         private System.Windows.Forms.Label label77;
         private System.Windows.Forms.Label label78;
         private System.Windows.Forms.TextBox mclaneCigs;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label currentPWSLabel;
-        private System.Windows.Forms.Button selectPws;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Button printButton;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox cashierName7;
         private System.Windows.Forms.TextBox cashierVariance7;
@@ -2795,6 +3086,23 @@
         private System.Windows.Forms.TextBox cashierDrops8;
         private System.Windows.Forms.TextBox cashierDrops9;
         private System.Windows.Forms.TextBox cashierDrops10;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem savePWSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openPWSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printPWSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem changeApplicationFilepathToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
+        private System.Windows.Forms.TextBox overrun;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox reimbursement;
+        private System.Windows.Forms.Label label36;
     }
 }
 

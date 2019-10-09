@@ -10,18 +10,21 @@ using System.Windows.Forms;
 
 namespace _711PWAssistant
 {
-    public partial class PWSDateForm : Form
+    public partial class PumpTestsForm : Form
     {
-        public string pwsDate { get; set; }
-        public PWSDateForm()
+        public PumpTestsForm()
         {
             InitializeComponent();
         }
 
-        private void retrievePWS_Click(object sender, EventArgs e)
+        private void Accept_Click(object sender, EventArgs e)
         {
-            pwsDate = pwsTimePicker.Value.ToString("MM-dd-yyyy");
             this.DialogResult = DialogResult.OK;
+        }
+        private void SelectUponTab(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            textBox.Select(0, textBox.Text.Length);
         }
     }
 }

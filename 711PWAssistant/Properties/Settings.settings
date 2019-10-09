@@ -1,7 +1,51 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="_711PWAssistant.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RootFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Shared Folder\\7 11 Paperwork Assistant\\</Value>
+    </Setting>
+    <Setting Name="FrontOnes" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="BackOnes" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="FrontFives" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="BackFives" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="FrontTens" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="BackTens" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="FrontTwenties" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="BackTwenties" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="PdfFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Paperwork Sets\\PDFs\\</Value>
+    </Setting>
+    <Setting Name="BinFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Paperwork Sets\\Bin Files\\</Value>
+    </Setting>
+    <Setting Name="ExceptionFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Error Logs\\Exception Messages\\</Value>
+    </Setting>
+    <Setting Name="TraceFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Error Logs\\Stack Traces\\</Value>
+    </Setting>
+    <Setting Name="Version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.0</Value>
+    </Setting>
+    <Setting Name="ImgFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AppData\\</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

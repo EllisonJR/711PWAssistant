@@ -8,22 +8,195 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _711PWAssistant.Properties
-{
-
-
+namespace _711PWAssistant.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\Shared Folder\\\\7 11 Paperwork Assistant\\\\")]
+        public string RootFilePath {
+            get {
+                return ((string)(this["RootFilePath"]));
+            }
+            set {
+                this["RootFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public double FrontOnes {
+            get {
+                return ((double)(this["FrontOnes"]));
+            }
+            set {
+                this["FrontOnes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public double BackOnes {
+            get {
+                return ((double)(this["BackOnes"]));
+            }
+            set {
+                this["BackOnes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public double FrontFives {
+            get {
+                return ((double)(this["FrontFives"]));
+            }
+            set {
+                this["FrontFives"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public double BackFives {
+            get {
+                return ((double)(this["BackFives"]));
+            }
+            set {
+                this["BackFives"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public double FrontTens {
+            get {
+                return ((double)(this["FrontTens"]));
+            }
+            set {
+                this["FrontTens"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public double BackTens {
+            get {
+                return ((double)(this["BackTens"]));
+            }
+            set {
+                this["BackTens"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double FrontTwenties {
+            get {
+                return ((double)(this["FrontTwenties"]));
+            }
+            set {
+                this["FrontTwenties"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double BackTwenties {
+            get {
+                return ((double)(this["BackTwenties"]));
+            }
+            set {
+                this["BackTwenties"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Paperwork Sets\\\\PDFs\\\\")]
+        public string PdfFilePath {
+            get {
+                return ((string)(this["PdfFilePath"]));
+            }
+            set {
+                this["PdfFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Paperwork Sets\\\\Bin Files\\\\")]
+        public string BinFilePath {
+            get {
+                return ((string)(this["BinFilePath"]));
+            }
+            set {
+                this["BinFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Error Logs\\\\Exception Messages\\\\")]
+        public string ExceptionFilePath {
+            get {
+                return ((string)(this["ExceptionFilePath"]));
+            }
+            set {
+                this["ExceptionFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Error Logs\\\\Stack Traces\\\\")]
+        public string TraceFilePath {
+            get {
+                return ((string)(this["TraceFilePath"]));
+            }
+            set {
+                this["TraceFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        public string Version {
+            get {
+                return ((string)(this["Version"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AppData\\\\")]
+        public string ImgFilePath {
+            get {
+                return ((string)(this["ImgFilePath"]));
+            }
+            set {
+                this["ImgFilePath"] = value;
             }
         }
     }
