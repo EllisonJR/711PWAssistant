@@ -47,5 +47,11 @@
     <Setting Name="ImgFilePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">AppData\\</Value>
     </Setting>
+    <Setting Name="BackDrawer" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="FrontDrawer" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

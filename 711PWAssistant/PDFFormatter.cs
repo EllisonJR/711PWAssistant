@@ -712,14 +712,7 @@ namespace _711PWAssistant
                         lottoRect.X += lottoRect.Width;
                         lottoRect.Width /= 2;
                         gfx.DrawRectangle(pen, whiteBox, lottoRect);
-                        if (TextBoxBackingFields.OnlineSales != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.OnlineSales, smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.OnlineSales.ToString("C"), smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
                         lottoRect.Width *= 2;
                         lottoRect.Y += lottoRect.Height;
                         lottoRect.X -= lottoRect.Width;
@@ -728,14 +721,7 @@ namespace _711PWAssistant
                         lottoRect.X += lottoRect.Width;
                         lottoRect.Width /= 2;
                         gfx.DrawRectangle(pen, whiteBox, lottoRect);
-                        if (TextBoxBackingFields.InstantSales != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.InstantSales, smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.InstantSales.ToString("C"), smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
                         lottoRect.Width *= 2;
                         lottoRect.X = lottoStartingCoords.X;
                         lottoRect.Y += lottoRect.Height * 2;
@@ -746,14 +732,7 @@ namespace _711PWAssistant
                         lottoRect.X += lottoRect.Width;
                         lottoRect.Width /= 2;
                         gfx.DrawRectangle(pen, whiteBox, lottoRect);
-                        if (TextBoxBackingFields.OnlinePaidOut != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.OnlinePaidOut, smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.OnlinePaidOut.ToString("C"), smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
                         lottoRect.Width *= 2;
                         lottoRect.Y += lottoRect.Height;
                         lottoRect.X -= lottoRect.Width;
@@ -762,14 +741,7 @@ namespace _711PWAssistant
                         lottoRect.X += lottoRect.Width;
                         lottoRect.Width /= 2;
                         gfx.DrawRectangle(pen, whiteBox, lottoRect);
-                        if (TextBoxBackingFields.InstantPaidOut != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.InstantPaidOut, smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.InstantPaidOut.ToString("C"), smallDenotationFont, XBrushes.Black, lottoRect.X + 2, lottoRect.Y + 2, XStringFormats.TopLeft);
                         break;
                 }
             }
@@ -844,28 +816,14 @@ namespace _711PWAssistant
                         gfx.DrawString("Ambest Redemption", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.X += miscRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, miscRect);
-                        if (TextBoxBackingFields.StorePaidOut != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.AmbestRedeem, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.AmbestRedeem.ToString("C"), smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.X -= miscRect.Width;
                         miscRect.Y += font.Height;
                         gfx.DrawRectangle(pen, greyBox, miscRect);
                         gfx.DrawString("Store Paid Out", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.X += miscRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, miscRect);
-                        if (TextBoxBackingFields.StorePaidOut != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.StorePaidOut, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.StorePaidOut.ToString("C"), smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.X -= miscRect.Width;
                         miscRect.Y += font.Height;
                         break;
@@ -875,14 +833,7 @@ namespace _711PWAssistant
                         
                         miscRect.X += miscRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, miscRect);
-                        if (TextBoxBackingFields.Coupons != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.Coupons, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.Coupons.ToString("C"), smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.X -= miscRect.Width;
                         miscRect.Y += font.Height;
                         gfx.DrawRectangle(pen, greyBox, miscRect);
@@ -890,14 +841,7 @@ namespace _711PWAssistant
                         
                         miscRect.X += miscRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, miscRect);
-                        if (TextBoxBackingFields.Incentive != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.Incentive, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.Incentive.ToString("C"), smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.Y += font.Height;
                         miscRect.X -= miscRect.Width;
                         break;
@@ -907,14 +851,7 @@ namespace _711PWAssistant
 
                         miscRect.X += miscRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, miscRect);
-                        if (TextBoxBackingFields.Reimbursement != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.Reimbursement, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.Reimbursement.ToString("C"), smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.X -= miscRect.Width;
                         miscRect.Y += font.Height;
                         gfx.DrawRectangle(pen, greyBox, miscRect);
@@ -922,14 +859,7 @@ namespace _711PWAssistant
 
                         miscRect.X += miscRect.Width;
                         gfx.DrawRectangle(pen, whiteBox, miscRect);
-                        if (TextBoxBackingFields.Overrun != null)
-                        {
-                            gfx.DrawString(TextBoxBackingFields.Overrun, smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
-                        else
-                        {
-                            gfx.DrawString("$0.00", smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
-                        }
+                        gfx.DrawString(TextBoxBackingFields.Overrun.ToString("C"), smallDenotationFont, XBrushes.Black, miscRect.X + 2, miscRect.Y + 2, XStringFormats.TopLeft);
                         miscRect.Y += font.Height * 3;
                         miscRect.X -= miscRect.Width;
                         break;

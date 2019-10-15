@@ -92,21 +92,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.billOfLading1 = new System.Windows.Forms.TextBox();
-            this.billOfLading2 = new System.Windows.Forms.TextBox();
-            this.billOfLading3 = new System.Windows.Forms.TextBox();
-            this.billOfLading5 = new System.Windows.Forms.TextBox();
-            this.billOfLading4 = new System.Windows.Forms.TextBox();
-            this.netFuel5 = new System.Windows.Forms.TextBox();
-            this.netFuel4 = new System.Windows.Forms.TextBox();
-            this.netFuel3 = new System.Windows.Forms.TextBox();
-            this.netFuel2 = new System.Windows.Forms.TextBox();
-            this.netFuel1 = new System.Windows.Forms.TextBox();
-            this.grossFuel5 = new System.Windows.Forms.TextBox();
-            this.grossFuel4 = new System.Windows.Forms.TextBox();
-            this.grossFuel3 = new System.Windows.Forms.TextBox();
-            this.grossFuel2 = new System.Windows.Forms.TextBox();
-            this.grossFuel1 = new System.Windows.Forms.TextBox();
             this.fuelPicker2 = new System.Windows.Forms.ComboBox();
             this.fuelPicker3 = new System.Windows.Forms.ComboBox();
             this.fuelPicker4 = new System.Windows.Forms.ComboBox();
@@ -231,18 +216,33 @@
             this.cashierChange10 = new System.Windows.Forms.TextBox();
             this.cashierDrops10 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.billOfLading1 = new System.Windows.Forms.TextBox();
+            this.netFuel1 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel1 = new System.Windows.Forms.RichTextBox();
+            this.billOfLading2 = new System.Windows.Forms.TextBox();
+            this.netFuel2 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel2 = new System.Windows.Forms.RichTextBox();
+            this.billOfLading3 = new System.Windows.Forms.TextBox();
+            this.netFuel3 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel3 = new System.Windows.Forms.RichTextBox();
+            this.billOfLading4 = new System.Windows.Forms.TextBox();
+            this.netFuel4 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel4 = new System.Windows.Forms.RichTextBox();
+            this.billOfLading5 = new System.Windows.Forms.TextBox();
+            this.netFuel5 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel5 = new System.Windows.Forms.RichTextBox();
             this.fuelPicker6 = new System.Windows.Forms.ComboBox();
             this.billOfLading6 = new System.Windows.Forms.TextBox();
-            this.netFuel6 = new System.Windows.Forms.TextBox();
-            this.grossFuel6 = new System.Windows.Forms.TextBox();
+            this.netFuel6 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel6 = new System.Windows.Forms.RichTextBox();
             this.fuelPicker7 = new System.Windows.Forms.ComboBox();
             this.billOfLading7 = new System.Windows.Forms.TextBox();
-            this.netFuel7 = new System.Windows.Forms.TextBox();
-            this.grossFuel7 = new System.Windows.Forms.TextBox();
+            this.netFuel7 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel7 = new System.Windows.Forms.RichTextBox();
             this.fuelPicker8 = new System.Windows.Forms.ComboBox();
             this.billOfLading8 = new System.Windows.Forms.TextBox();
-            this.netFuel8 = new System.Windows.Forms.TextBox();
-            this.grossFuel8 = new System.Windows.Forms.TextBox();
+            this.netFuel8 = new System.Windows.Forms.RichTextBox();
+            this.grossFuel8 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePWSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -251,9 +251,10 @@
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeApplicationFilepathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tubeAmountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawerAmountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.overrun = new System.Windows.Forms.TextBox();
@@ -824,12 +825,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker1.Location = new System.Drawing.Point(3, 3);
             this.fuelPicker1.Name = "fuelPicker1";
             this.fuelPicker1.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker1.TabIndex = 10;
             this.fuelPicker1.Text = "<choose fuel type>";
+            this.fuelPicker1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker1.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // cashierChangeBroughtToSafeTotals
@@ -928,156 +933,6 @@
             this.label25.TabIndex = 67;
             this.label25.Text = "Gross";
             // 
-            // billOfLading1
-            // 
-            this.billOfLading1.Location = new System.Drawing.Point(130, 3);
-            this.billOfLading1.Name = "billOfLading1";
-            this.billOfLading1.Size = new System.Drawing.Size(95, 20);
-            this.billOfLading1.TabIndex = 11;
-            this.billOfLading1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.billOfLading1.TextChanged += new System.EventHandler(this.textChanged);
-            this.billOfLading1.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // billOfLading2
-            // 
-            this.billOfLading2.Location = new System.Drawing.Point(130, 30);
-            this.billOfLading2.Name = "billOfLading2";
-            this.billOfLading2.Size = new System.Drawing.Size(95, 20);
-            this.billOfLading2.TabIndex = 15;
-            this.billOfLading2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.billOfLading2.TextChanged += new System.EventHandler(this.textChanged);
-            this.billOfLading2.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // billOfLading3
-            // 
-            this.billOfLading3.Location = new System.Drawing.Point(130, 57);
-            this.billOfLading3.Name = "billOfLading3";
-            this.billOfLading3.Size = new System.Drawing.Size(95, 20);
-            this.billOfLading3.TabIndex = 19;
-            this.billOfLading3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.billOfLading3.TextChanged += new System.EventHandler(this.textChanged);
-            this.billOfLading3.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // billOfLading5
-            // 
-            this.billOfLading5.Location = new System.Drawing.Point(130, 111);
-            this.billOfLading5.Name = "billOfLading5";
-            this.billOfLading5.Size = new System.Drawing.Size(95, 20);
-            this.billOfLading5.TabIndex = 27;
-            this.billOfLading5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.billOfLading5.TextChanged += new System.EventHandler(this.textChanged);
-            this.billOfLading5.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // billOfLading4
-            // 
-            this.billOfLading4.Location = new System.Drawing.Point(130, 84);
-            this.billOfLading4.Name = "billOfLading4";
-            this.billOfLading4.Size = new System.Drawing.Size(95, 20);
-            this.billOfLading4.TabIndex = 23;
-            this.billOfLading4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.billOfLading4.TextChanged += new System.EventHandler(this.textChanged);
-            this.billOfLading4.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // netFuel5
-            // 
-            this.netFuel5.Location = new System.Drawing.Point(231, 111);
-            this.netFuel5.Name = "netFuel5";
-            this.netFuel5.Size = new System.Drawing.Size(95, 20);
-            this.netFuel5.TabIndex = 28;
-            this.netFuel5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.netFuel5.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel5.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // netFuel4
-            // 
-            this.netFuel4.Location = new System.Drawing.Point(231, 84);
-            this.netFuel4.Name = "netFuel4";
-            this.netFuel4.Size = new System.Drawing.Size(95, 20);
-            this.netFuel4.TabIndex = 24;
-            this.netFuel4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.netFuel4.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel4.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // netFuel3
-            // 
-            this.netFuel3.Location = new System.Drawing.Point(231, 57);
-            this.netFuel3.Name = "netFuel3";
-            this.netFuel3.Size = new System.Drawing.Size(95, 20);
-            this.netFuel3.TabIndex = 20;
-            this.netFuel3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.netFuel3.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel3.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // netFuel2
-            // 
-            this.netFuel2.Location = new System.Drawing.Point(231, 30);
-            this.netFuel2.Name = "netFuel2";
-            this.netFuel2.Size = new System.Drawing.Size(95, 20);
-            this.netFuel2.TabIndex = 16;
-            this.netFuel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.netFuel2.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel2.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // netFuel1
-            // 
-            this.netFuel1.Location = new System.Drawing.Point(231, 3);
-            this.netFuel1.Name = "netFuel1";
-            this.netFuel1.Size = new System.Drawing.Size(95, 20);
-            this.netFuel1.TabIndex = 12;
-            this.netFuel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.netFuel1.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel1.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // grossFuel5
-            // 
-            this.grossFuel5.Location = new System.Drawing.Point(332, 111);
-            this.grossFuel5.Name = "grossFuel5";
-            this.grossFuel5.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel5.TabIndex = 29;
-            this.grossFuel5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grossFuel5.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel5.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // grossFuel4
-            // 
-            this.grossFuel4.Location = new System.Drawing.Point(332, 84);
-            this.grossFuel4.Name = "grossFuel4";
-            this.grossFuel4.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel4.TabIndex = 25;
-            this.grossFuel4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grossFuel4.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel4.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // grossFuel3
-            // 
-            this.grossFuel3.Location = new System.Drawing.Point(332, 57);
-            this.grossFuel3.Name = "grossFuel3";
-            this.grossFuel3.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel3.TabIndex = 21;
-            this.grossFuel3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grossFuel3.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel3.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // grossFuel2
-            // 
-            this.grossFuel2.Location = new System.Drawing.Point(332, 30);
-            this.grossFuel2.Name = "grossFuel2";
-            this.grossFuel2.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel2.TabIndex = 17;
-            this.grossFuel2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grossFuel2.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel2.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
-            // grossFuel1
-            // 
-            this.grossFuel1.Location = new System.Drawing.Point(332, 3);
-            this.grossFuel1.Name = "grossFuel1";
-            this.grossFuel1.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel1.TabIndex = 13;
-            this.grossFuel1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.grossFuel1.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel1.Enter += new System.EventHandler(this.SelectUponTab);
-            // 
             // fuelPicker2
             // 
             this.fuelPicker2.FormattingEnabled = true;
@@ -1085,12 +940,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker2.Location = new System.Drawing.Point(3, 30);
             this.fuelPicker2.Name = "fuelPicker2";
             this.fuelPicker2.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker2.TabIndex = 14;
             this.fuelPicker2.Text = "<choose fuel type>";
+            this.fuelPicker2.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker2.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // fuelPicker3
@@ -1100,12 +959,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker3.Location = new System.Drawing.Point(3, 57);
             this.fuelPicker3.Name = "fuelPicker3";
             this.fuelPicker3.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker3.TabIndex = 18;
             this.fuelPicker3.Text = "<choose fuel type>";
+            this.fuelPicker3.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker3.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // fuelPicker4
@@ -1115,12 +978,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker4.Location = new System.Drawing.Point(3, 84);
             this.fuelPicker4.Name = "fuelPicker4";
             this.fuelPicker4.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker4.TabIndex = 22;
             this.fuelPicker4.Text = "<choose fuel type>";
+            this.fuelPicker4.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker4.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // fuelPicker5
@@ -1130,12 +997,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker5.Location = new System.Drawing.Point(3, 111);
             this.fuelPicker5.Name = "fuelPicker5";
             this.fuelPicker5.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker5.TabIndex = 26;
             this.fuelPicker5.Text = "<choose fuel type>";
+            this.fuelPicker5.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker5.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // label26
@@ -2409,10 +2280,181 @@
             this.flowLayoutPanel2.Controls.Add(this.billOfLading8);
             this.flowLayoutPanel2.Controls.Add(this.netFuel8);
             this.flowLayoutPanel2.Controls.Add(this.grossFuel8);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(15, 448);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(14, 447);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(447, 134);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(455, 137);
             this.flowLayoutPanel2.TabIndex = 10;
+            // 
+            // billOfLading1
+            // 
+            this.billOfLading1.Location = new System.Drawing.Point(130, 3);
+            this.billOfLading1.Name = "billOfLading1";
+            this.billOfLading1.Size = new System.Drawing.Size(95, 20);
+            this.billOfLading1.TabIndex = 11;
+            this.billOfLading1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading1.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading1.Enter += new System.EventHandler(this.SelectUponTab);
+            // 
+            // netFuel1
+            // 
+            this.netFuel1.Location = new System.Drawing.Point(231, 3);
+            this.netFuel1.Multiline = false;
+            this.netFuel1.Name = "netFuel1";
+            this.netFuel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel1.ShortcutsEnabled = false;
+            this.netFuel1.Size = new System.Drawing.Size(95, 21);
+            this.netFuel1.TabIndex = 224;
+            this.netFuel1.Text = "";
+            this.netFuel1.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // grossFuel1
+            // 
+            this.grossFuel1.Location = new System.Drawing.Point(332, 3);
+            this.grossFuel1.Multiline = false;
+            this.grossFuel1.Name = "grossFuel1";
+            this.grossFuel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel1.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel1.TabIndex = 223;
+            this.grossFuel1.Text = "";
+            this.grossFuel1.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // billOfLading2
+            // 
+            this.billOfLading2.Location = new System.Drawing.Point(130, 30);
+            this.billOfLading2.Name = "billOfLading2";
+            this.billOfLading2.Size = new System.Drawing.Size(95, 20);
+            this.billOfLading2.TabIndex = 15;
+            this.billOfLading2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading2.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading2.Enter += new System.EventHandler(this.SelectUponTab);
+            // 
+            // netFuel2
+            // 
+            this.netFuel2.Location = new System.Drawing.Point(231, 30);
+            this.netFuel2.Multiline = false;
+            this.netFuel2.Name = "netFuel2";
+            this.netFuel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel2.Size = new System.Drawing.Size(95, 21);
+            this.netFuel2.TabIndex = 222;
+            this.netFuel2.Text = "";
+            this.netFuel2.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // grossFuel2
+            // 
+            this.grossFuel2.Location = new System.Drawing.Point(332, 30);
+            this.grossFuel2.Multiline = false;
+            this.grossFuel2.Name = "grossFuel2";
+            this.grossFuel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel2.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel2.TabIndex = 221;
+            this.grossFuel2.Text = "";
+            this.grossFuel2.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // billOfLading3
+            // 
+            this.billOfLading3.Location = new System.Drawing.Point(130, 57);
+            this.billOfLading3.Name = "billOfLading3";
+            this.billOfLading3.Size = new System.Drawing.Size(95, 20);
+            this.billOfLading3.TabIndex = 19;
+            this.billOfLading3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading3.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading3.Enter += new System.EventHandler(this.SelectUponTab);
+            // 
+            // netFuel3
+            // 
+            this.netFuel3.Location = new System.Drawing.Point(231, 57);
+            this.netFuel3.Multiline = false;
+            this.netFuel3.Name = "netFuel3";
+            this.netFuel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel3.Size = new System.Drawing.Size(95, 21);
+            this.netFuel3.TabIndex = 220;
+            this.netFuel3.Text = "";
+            this.netFuel3.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // grossFuel3
+            // 
+            this.grossFuel3.Location = new System.Drawing.Point(332, 57);
+            this.grossFuel3.Multiline = false;
+            this.grossFuel3.Name = "grossFuel3";
+            this.grossFuel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel3.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel3.TabIndex = 219;
+            this.grossFuel3.Text = "";
+            this.grossFuel3.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // billOfLading4
+            // 
+            this.billOfLading4.Location = new System.Drawing.Point(130, 84);
+            this.billOfLading4.Name = "billOfLading4";
+            this.billOfLading4.Size = new System.Drawing.Size(95, 20);
+            this.billOfLading4.TabIndex = 23;
+            this.billOfLading4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading4.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading4.Enter += new System.EventHandler(this.SelectUponTab);
+            // 
+            // netFuel4
+            // 
+            this.netFuel4.Location = new System.Drawing.Point(231, 84);
+            this.netFuel4.Multiline = false;
+            this.netFuel4.Name = "netFuel4";
+            this.netFuel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel4.Size = new System.Drawing.Size(95, 21);
+            this.netFuel4.TabIndex = 218;
+            this.netFuel4.Text = "";
+            this.netFuel4.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // grossFuel4
+            // 
+            this.grossFuel4.Location = new System.Drawing.Point(332, 84);
+            this.grossFuel4.Multiline = false;
+            this.grossFuel4.Name = "grossFuel4";
+            this.grossFuel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel4.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel4.TabIndex = 217;
+            this.grossFuel4.Text = "";
+            this.grossFuel4.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // billOfLading5
+            // 
+            this.billOfLading5.Location = new System.Drawing.Point(130, 111);
+            this.billOfLading5.Name = "billOfLading5";
+            this.billOfLading5.Size = new System.Drawing.Size(95, 20);
+            this.billOfLading5.TabIndex = 27;
+            this.billOfLading5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.billOfLading5.TextChanged += new System.EventHandler(this.textChanged);
+            this.billOfLading5.Enter += new System.EventHandler(this.SelectUponTab);
+            // 
+            // netFuel5
+            // 
+            this.netFuel5.Location = new System.Drawing.Point(231, 111);
+            this.netFuel5.Multiline = false;
+            this.netFuel5.Name = "netFuel5";
+            this.netFuel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel5.Size = new System.Drawing.Size(95, 21);
+            this.netFuel5.TabIndex = 216;
+            this.netFuel5.Text = "";
+            this.netFuel5.TextChanged += new System.EventHandler(this.textChanged);
+            this.netFuel5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
+            // 
+            // grossFuel5
+            // 
+            this.grossFuel5.Location = new System.Drawing.Point(332, 111);
+            this.grossFuel5.Multiline = false;
+            this.grossFuel5.Name = "grossFuel5";
+            this.grossFuel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel5.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel5.TabIndex = 215;
+            this.grossFuel5.Text = "";
+            this.grossFuel5.TextChanged += new System.EventHandler(this.textChanged);
+            this.grossFuel5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // fuelPicker6
             // 
@@ -2421,12 +2463,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker6.Location = new System.Drawing.Point(3, 138);
             this.fuelPicker6.Name = "fuelPicker6";
             this.fuelPicker6.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker6.TabIndex = 30;
             this.fuelPicker6.Text = "<choose fuel type>";
+            this.fuelPicker6.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker6.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // billOfLading6
@@ -2442,22 +2488,26 @@
             // netFuel6
             // 
             this.netFuel6.Location = new System.Drawing.Point(231, 138);
+            this.netFuel6.Multiline = false;
             this.netFuel6.Name = "netFuel6";
-            this.netFuel6.Size = new System.Drawing.Size(95, 20);
-            this.netFuel6.TabIndex = 32;
-            this.netFuel6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel6.Size = new System.Drawing.Size(95, 21);
+            this.netFuel6.TabIndex = 214;
+            this.netFuel6.Text = "";
             this.netFuel6.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel6.Enter += new System.EventHandler(this.SelectUponTab);
+            this.netFuel6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // grossFuel6
             // 
             this.grossFuel6.Location = new System.Drawing.Point(332, 138);
+            this.grossFuel6.Multiline = false;
             this.grossFuel6.Name = "grossFuel6";
-            this.grossFuel6.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel6.TabIndex = 33;
-            this.grossFuel6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel6.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel6.TabIndex = 213;
+            this.grossFuel6.Text = "";
             this.grossFuel6.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel6.Enter += new System.EventHandler(this.SelectUponTab);
+            this.grossFuel6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // fuelPicker7
             // 
@@ -2466,12 +2516,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker7.Location = new System.Drawing.Point(3, 165);
             this.fuelPicker7.Name = "fuelPicker7";
             this.fuelPicker7.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker7.TabIndex = 34;
             this.fuelPicker7.Text = "<choose fuel type>";
+            this.fuelPicker7.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker7.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // billOfLading7
@@ -2487,22 +2541,26 @@
             // netFuel7
             // 
             this.netFuel7.Location = new System.Drawing.Point(231, 165);
+            this.netFuel7.Multiline = false;
             this.netFuel7.Name = "netFuel7";
-            this.netFuel7.Size = new System.Drawing.Size(95, 20);
-            this.netFuel7.TabIndex = 36;
-            this.netFuel7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel7.Size = new System.Drawing.Size(95, 21);
+            this.netFuel7.TabIndex = 212;
+            this.netFuel7.Text = "";
             this.netFuel7.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel7.Enter += new System.EventHandler(this.SelectUponTab);
+            this.netFuel7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // grossFuel7
             // 
             this.grossFuel7.Location = new System.Drawing.Point(332, 165);
+            this.grossFuel7.Multiline = false;
             this.grossFuel7.Name = "grossFuel7";
-            this.grossFuel7.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel7.TabIndex = 37;
-            this.grossFuel7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel7.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel7.TabIndex = 211;
+            this.grossFuel7.Text = "";
             this.grossFuel7.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel7.Enter += new System.EventHandler(this.SelectUponTab);
+            this.grossFuel7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // fuelPicker8
             // 
@@ -2511,12 +2569,16 @@
             "Regular",
             "Ultra",
             "Diesel",
-            "DEF"});
+            "DEF",
+            "Reg/Ultra",
+            "Reg/Diesel",
+            "Ult/Diesel"});
             this.fuelPicker8.Location = new System.Drawing.Point(3, 192);
             this.fuelPicker8.Name = "fuelPicker8";
             this.fuelPicker8.Size = new System.Drawing.Size(121, 21);
             this.fuelPicker8.TabIndex = 38;
             this.fuelPicker8.Text = "<choose fuel type>";
+            this.fuelPicker8.SelectedIndexChanged += new System.EventHandler(this.ComboBoxChanged);
             this.fuelPicker8.TextChanged += new System.EventHandler(this.textChanged);
             // 
             // billOfLading8
@@ -2532,22 +2594,26 @@
             // netFuel8
             // 
             this.netFuel8.Location = new System.Drawing.Point(231, 192);
+            this.netFuel8.Multiline = false;
             this.netFuel8.Name = "netFuel8";
-            this.netFuel8.Size = new System.Drawing.Size(95, 20);
-            this.netFuel8.TabIndex = 40;
-            this.netFuel8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.netFuel8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.netFuel8.Size = new System.Drawing.Size(95, 21);
+            this.netFuel8.TabIndex = 209;
+            this.netFuel8.Text = "";
             this.netFuel8.TextChanged += new System.EventHandler(this.textChanged);
-            this.netFuel8.Enter += new System.EventHandler(this.SelectUponTab);
+            this.netFuel8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // grossFuel8
             // 
             this.grossFuel8.Location = new System.Drawing.Point(332, 192);
+            this.grossFuel8.Multiline = false;
             this.grossFuel8.Name = "grossFuel8";
-            this.grossFuel8.Size = new System.Drawing.Size(95, 20);
-            this.grossFuel8.TabIndex = 41;
-            this.grossFuel8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.grossFuel8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.grossFuel8.Size = new System.Drawing.Size(95, 21);
+            this.grossFuel8.TabIndex = 210;
+            this.grossFuel8.Text = "";
             this.grossFuel8.TextChanged += new System.EventHandler(this.textChanged);
-            this.grossFuel8.Enter += new System.EventHandler(this.SelectUponTab);
+            this.grossFuel8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
             // 
             // menuStrip1
             // 
@@ -2602,7 +2668,9 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeApplicationFilepathToolStripMenuItem});
+            this.changeApplicationFilepathToolStripMenuItem,
+            this.tubeAmountsToolStripMenuItem,
+            this.drawerAmountsToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -2610,9 +2678,22 @@
             // changeApplicationFilepathToolStripMenuItem
             // 
             this.changeApplicationFilepathToolStripMenuItem.Name = "changeApplicationFilepathToolStripMenuItem";
-            this.changeApplicationFilepathToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.changeApplicationFilepathToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.changeApplicationFilepathToolStripMenuItem.Text = "PWS FilePath";
             this.changeApplicationFilepathToolStripMenuItem.Click += new System.EventHandler(this.ChangeApplicationFilepathToolStripMenuItem_Click);
+            // 
+            // tubeAmountsToolStripMenuItem
+            // 
+            this.tubeAmountsToolStripMenuItem.Name = "tubeAmountsToolStripMenuItem";
+            this.tubeAmountsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.tubeAmountsToolStripMenuItem.Text = "Tube Amounts";
+            this.tubeAmountsToolStripMenuItem.Click += new System.EventHandler(this.ChangeTubes_Click);
+            // 
+            // drawerAmountsToolStripMenuItem
+            // 
+            this.drawerAmountsToolStripMenuItem.Name = "drawerAmountsToolStripMenuItem";
+            this.drawerAmountsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.drawerAmountsToolStripMenuItem.Text = "Drawer Amounts";
             // 
             // folderBrowserDialog1
             // 
@@ -2620,23 +2701,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(145, 398);
+            this.button1.Location = new System.Drawing.Point(212, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 201;
             this.button1.Text = "Pump Tests";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(799, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 202;
-            this.button2.Text = "Tube Amounts";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ChangeTubes_Click);
             // 
             // printDialog1
             // 
@@ -2699,14 +2770,13 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.MenuBar;
             this.ClientSize = new System.Drawing.Size(902, 596);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.overrun);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.reimbursement);
             this.Controls.Add(this.label36);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.currentPWSLabel);
@@ -2935,21 +3005,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox billOfLading1;
-        private System.Windows.Forms.TextBox billOfLading2;
-        private System.Windows.Forms.TextBox billOfLading3;
-        private System.Windows.Forms.TextBox billOfLading5;
-        private System.Windows.Forms.TextBox billOfLading4;
-        private System.Windows.Forms.TextBox netFuel5;
-        private System.Windows.Forms.TextBox netFuel4;
-        private System.Windows.Forms.TextBox netFuel3;
-        private System.Windows.Forms.TextBox netFuel2;
-        private System.Windows.Forms.TextBox netFuel1;
-        private System.Windows.Forms.TextBox grossFuel5;
-        private System.Windows.Forms.TextBox grossFuel4;
-        private System.Windows.Forms.TextBox grossFuel3;
-        private System.Windows.Forms.TextBox grossFuel2;
-        private System.Windows.Forms.TextBox grossFuel1;
         private System.Windows.Forms.ComboBox fuelPicker2;
         private System.Windows.Forms.ComboBox fuelPicker3;
         private System.Windows.Forms.ComboBox fuelPicker4;
@@ -3065,17 +3120,8 @@
         private System.Windows.Forms.TextBox cashierChange10;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.ComboBox fuelPicker6;
-        private System.Windows.Forms.TextBox billOfLading6;
-        private System.Windows.Forms.TextBox netFuel6;
-        private System.Windows.Forms.TextBox grossFuel6;
         private System.Windows.Forms.ComboBox fuelPicker7;
-        private System.Windows.Forms.TextBox billOfLading7;
-        private System.Windows.Forms.TextBox netFuel7;
-        private System.Windows.Forms.TextBox grossFuel7;
         private System.Windows.Forms.ComboBox fuelPicker8;
-        private System.Windows.Forms.TextBox billOfLading8;
-        private System.Windows.Forms.TextBox netFuel8;
-        private System.Windows.Forms.TextBox grossFuel8;
         private System.Windows.Forms.TextBox cashierDrops1;
         private System.Windows.Forms.TextBox cashierDrops2;
         private System.Windows.Forms.TextBox cashierDrops3;
@@ -3095,7 +3141,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem changeApplicationFilepathToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
@@ -3103,6 +3148,32 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox reimbursement;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.ToolStripMenuItem tubeAmountsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawerAmountsToolStripMenuItem;
+        private System.Windows.Forms.TextBox billOfLading1;
+        private System.Windows.Forms.RichTextBox netFuel1;
+        private System.Windows.Forms.RichTextBox grossFuel1;
+        private System.Windows.Forms.TextBox billOfLading2;
+        private System.Windows.Forms.RichTextBox netFuel2;
+        private System.Windows.Forms.RichTextBox grossFuel2;
+        private System.Windows.Forms.TextBox billOfLading3;
+        private System.Windows.Forms.RichTextBox netFuel3;
+        private System.Windows.Forms.RichTextBox grossFuel3;
+        private System.Windows.Forms.TextBox billOfLading4;
+        private System.Windows.Forms.RichTextBox netFuel4;
+        private System.Windows.Forms.RichTextBox grossFuel4;
+        private System.Windows.Forms.TextBox billOfLading5;
+        private System.Windows.Forms.RichTextBox netFuel5;
+        private System.Windows.Forms.RichTextBox grossFuel5;
+        private System.Windows.Forms.TextBox billOfLading6;
+        private System.Windows.Forms.RichTextBox netFuel6;
+        private System.Windows.Forms.RichTextBox grossFuel6;
+        private System.Windows.Forms.TextBox billOfLading7;
+        private System.Windows.Forms.RichTextBox netFuel7;
+        private System.Windows.Forms.RichTextBox grossFuel7;
+        private System.Windows.Forms.TextBox billOfLading8;
+        private System.Windows.Forms.RichTextBox netFuel8;
+        private System.Windows.Forms.RichTextBox grossFuel8;
     }
 }
 

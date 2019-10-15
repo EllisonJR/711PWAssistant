@@ -52,14 +52,22 @@ namespace _711PWAssistant
                 DeserializeFormValues();
                 objStreamDeSerialize.Close();
             }
+
+            dieselDrawer.Text = Properties.Settings.Default["BackDrawer"].ToString();
+            gasDrawer.Text = Properties.Settings.Default["FrontDrawer"].ToString();
         }
         private void textChanged(object sender, EventArgs e)
         {
             TextBox textBox = new TextBox();
             ComboBox comboBox = new ComboBox();
+            RichTextBox richText = new RichTextBox();
             if (sender is ComboBox)
             {
                 comboBox = (ComboBox)sender;
+            }
+            else if(sender is RichTextBox)
+            {
+                richText = (RichTextBox)sender;
             }
             else
             {
@@ -677,6 +685,106 @@ namespace _711PWAssistant
                         //cashierChecks.Text = TextBoxBackingFields.Checks.ToString();
                     }
                     break;
+                case "onlineSales":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.OnlineSales = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.OnlineSales = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "onlinePaidout":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.OnlinePaidOut = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.OnlinePaidOut = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "instantSales":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.InstantSales = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.InstantPaidOut = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "instantPaidout":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.InstantPaidOut = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.InstantPaidOut = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "ambestRedeem":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.AmbestRedeem = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.AmbestRedeem = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "coupons":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.Coupons = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.Coupons = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "reimbursement":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.Reimbursement = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.Reimbursement = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "employeeIncentive":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.Incentive = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.Incentive = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "overrun":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.Overrun = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.Overrun = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
+                case "storePaidOut":
+                    if (textBox.Text == "" || textBox.Text == "." || textBox.Text == "-" || textBox.Text.Contains(".") && textBox.Text.Contains("-") && !Regex.IsMatch(textBox.Text, @"\d"))
+                    {
+                        TextBoxBackingFields.StorePaidOut = 0;
+                    }
+                    else
+                    {
+                        TextBoxBackingFields.StorePaidOut = Convert.ToDouble(textBox.Text);
+                    }
+                    break;
             }
             TextBoxBackingFields.LowFeedstock = lowFeedstock.Text;
             TextBoxBackingFields.HighFeedstock = highFeedstock.Text;
@@ -699,18 +807,6 @@ namespace _711PWAssistant
             TextBoxBackingFields.CashierName8 = cashierName8.Text;
             TextBoxBackingFields.CashierName9 = cashierName9.Text;
             TextBoxBackingFields.CashierName10 = cashierName10.Text;
-
-            TextBoxBackingFields.OnlinePaidOut = onlinePaidout.Text;
-            TextBoxBackingFields.OnlineSales = onlineSales.Text;
-            TextBoxBackingFields.InstantPaidOut = instantPaidout.Text;
-            TextBoxBackingFields.InstantSales = instantSales.Text;
-
-            TextBoxBackingFields.StorePaidOut = storePaidOut.Text;
-            TextBoxBackingFields.AmbestRedeem = ambestRedeem.Text;
-            TextBoxBackingFields.Incentive = employeeIncentive.Text;
-            TextBoxBackingFields.Coupons = coupons.Text;
-            TextBoxBackingFields.Overrun = overrun.Text;
-            TextBoxBackingFields.Reimbursement = reimbursement.Text;
 
             TextBoxBackingFields.FuelType1 = fuelPicker1.Text;
             TextBoxBackingFields.BillOfLading1 = billOfLading1.Text;
@@ -1399,6 +1495,483 @@ namespace _711PWAssistant
         private void PrintPreviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PDFFormatter pdfFormatter = new PDFFormatter(true);
+        }
+        private void ComboBoxChanged(object sender, EventArgs e)
+        {
+            ComboBox combobox = new ComboBox();
+            combobox = (ComboBox)sender;
+
+            if (combobox.Text == "Reg/Ultra")
+            {
+                if (combobox.Name == "fuelPicker1")
+                {
+                    netFuel1.Clear();
+                    netFuel1.Text = "Regular/Ultra";
+                    netFuel1.Select(0, netFuel1.Text.Length);
+                    netFuel1.SelectionColor = Color.Gray;
+                    netFuel1.Select(7, 1);
+                    netFuel1.SelectionFont = new Font(netFuel1.SelectionFont, FontStyle.Bold);
+                    netFuel1.SelectionColor = Color.Black;
+
+                    grossFuel1.Clear();
+                    grossFuel1.Text = "Regular/Ultra";
+                    grossFuel1.Select(0, netFuel1.Text.Length);
+                    grossFuel1.SelectionColor = Color.Gray;
+                    grossFuel1.Select(7, 1);
+                    grossFuel1.SelectionFont = new Font(grossFuel1.SelectionFont, FontStyle.Bold);
+                    grossFuel1.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker2")
+                {
+                    netFuel2.Clear();
+                    netFuel2.Text = "Regular/Ultra";
+                    netFuel2.Select(0, netFuel2.Text.Length);
+                    netFuel2.SelectionColor = Color.Gray;
+                    netFuel2.Select(7, 1);
+                    netFuel2.SelectionFont = new Font(netFuel2.SelectionFont, FontStyle.Bold);
+                    netFuel2.SelectionColor = Color.Black;
+
+                    grossFuel2.Clear();
+                    grossFuel2.Text = "Regular/Ultra";
+                    grossFuel2.Select(0, netFuel1.Text.Length);
+                    grossFuel2.SelectionColor = Color.Gray;
+                    grossFuel2.Select(7, 1);
+                    grossFuel2.SelectionFont = new Font(grossFuel2.SelectionFont, FontStyle.Bold);
+                    grossFuel2.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker3")
+                {
+                    netFuel3.Clear();
+                    netFuel3.Text = "Regular/Ultra";
+                    netFuel3.Select(0, netFuel1.Text.Length);
+                    netFuel3.SelectionColor = Color.Gray;
+                    netFuel3.Select(7, 1);
+                    netFuel3.SelectionFont = new Font(netFuel3.SelectionFont, FontStyle.Bold);
+                    netFuel3.SelectionColor = Color.Black;
+
+                    grossFuel3.Clear();
+                    grossFuel3.Text = "Regular/Ultra";
+                    grossFuel3.Select(0, netFuel3.Text.Length);
+                    grossFuel3.SelectionColor = Color.Gray;
+                    grossFuel3.Select(7, 1);
+                    grossFuel3.SelectionFont = new Font(grossFuel3.SelectionFont, FontStyle.Bold);
+                    grossFuel3.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker4")
+                {
+                    netFuel4.Clear();
+                    netFuel4.Text = "Regular/Ultra";
+                    netFuel4.Select(0, netFuel4.Text.Length);
+                    netFuel4.SelectionColor = Color.Gray;
+                    netFuel4.Select(7, 1);
+                    netFuel4.SelectionFont = new Font(netFuel4.SelectionFont, FontStyle.Bold);
+                    netFuel4.SelectionColor = Color.Black;
+
+                    grossFuel4.Clear();
+                    grossFuel4.Text = "Regular/Ultra";
+                    grossFuel4.Select(0, netFuel4.Text.Length);
+                    grossFuel4.SelectionColor = Color.Gray;
+                    grossFuel4.Select(7, 1);
+                    grossFuel4.SelectionFont = new Font(grossFuel4.SelectionFont, FontStyle.Bold);
+                    grossFuel4.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker5")
+                {
+                    netFuel5.Clear();
+                    netFuel5.Text = "Regular/Ultra";
+                    netFuel5.Select(0, netFuel5.Text.Length);
+                    netFuel5.SelectionColor = Color.Gray;
+                    netFuel5.Select(7, 1);
+                    netFuel5.SelectionFont = new Font(netFuel5.SelectionFont, FontStyle.Bold);
+                    netFuel5.SelectionColor = Color.Black;
+
+                    grossFuel5.Clear();
+                    grossFuel5.Text = "Regular/Ultra";
+                    grossFuel5.Select(0, netFuel5.Text.Length);
+                    grossFuel5.SelectionColor = Color.Gray;
+                    grossFuel5.Select(7, 1);
+                    grossFuel5.SelectionFont = new Font(grossFuel5.SelectionFont, FontStyle.Bold);
+                    grossFuel5.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker6")
+                {
+                    netFuel6.Clear();
+                    netFuel6.Text = "Regular/Ultra";
+                    netFuel6.Select(0, netFuel6.Text.Length);
+                    netFuel6.SelectionColor = Color.Gray;
+                    netFuel6.Select(7, 1);
+                    netFuel6.SelectionFont = new Font(netFuel6.SelectionFont, FontStyle.Bold);
+                    netFuel6.SelectionColor = Color.Black;
+
+                    grossFuel6.Clear();
+                    grossFuel6.Text = "Regular/Ultra";
+                    grossFuel6.Select(0, netFuel6.Text.Length);
+                    grossFuel6.SelectionColor = Color.Gray;
+                    grossFuel6.Select(7, 1);
+                    grossFuel6.SelectionFont = new Font(grossFuel6.SelectionFont, FontStyle.Bold);
+                    grossFuel6.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker7")
+                {
+                    netFuel7.Clear();
+                    netFuel7.Text = "Regular/Ultra";
+                    netFuel7.Select(0, netFuel7.Text.Length);
+                    netFuel7.SelectionColor = Color.Gray;
+                    netFuel7.Select(7, 1);
+                    netFuel7.SelectionFont = new Font(netFuel7.SelectionFont, FontStyle.Bold);
+                    netFuel7.SelectionColor = Color.Black;
+
+                    grossFuel7.Clear();
+                    grossFuel7.Text = "Regular/Ultra";
+                    grossFuel7.Select(0, netFuel7.Text.Length);
+                    grossFuel7.SelectionColor = Color.Gray;
+                    grossFuel7.Select(7, 1);
+                    grossFuel7.SelectionFont = new Font(grossFuel7.SelectionFont, FontStyle.Bold);
+                    grossFuel7.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker8")
+                {
+                    netFuel8.Clear();
+                    netFuel8.Text = "Regular/Ultra";
+                    netFuel8.Select(0, netFuel8.Text.Length);
+                    netFuel8.SelectionColor = Color.Gray;
+                    netFuel8.Select(7, 1);
+                    netFuel8.SelectionFont = new Font(netFuel8.SelectionFont, FontStyle.Bold);
+                    netFuel8.SelectionColor = Color.Black;
+
+                    grossFuel8.Clear();
+                    grossFuel8.Text = "Regular/Ultra";
+                    grossFuel8.Select(0, netFuel8.Text.Length);
+                    grossFuel8.SelectionColor = Color.Gray;
+                    grossFuel8.Select(7, 1);
+                    grossFuel8.SelectionFont = new Font(grossFuel8.SelectionFont, FontStyle.Bold);
+                    grossFuel8.SelectionColor = Color.Black;
+                }
+            }
+            if (combobox.Text == "Reg/Diesel")
+            {
+                if (combobox.Name == "fuelPicker1")
+                {
+                    netFuel1.Clear();
+                    netFuel1.Text = "Regular/Diesel";
+                    netFuel1.Select(0, netFuel1.Text.Length);
+                    netFuel1.SelectionColor = Color.Gray;
+                    netFuel1.Select(7, 1);
+                    netFuel1.SelectionFont = new Font(netFuel1.SelectionFont, FontStyle.Bold);
+                    netFuel1.SelectionColor = Color.Black;
+
+                    grossFuel1.Clear();
+                    grossFuel1.Text = "Regular/Diesel";
+                    grossFuel1.Select(0, netFuel1.Text.Length);
+                    grossFuel1.SelectionColor = Color.Gray;
+                    grossFuel1.Select(7, 1);
+                    grossFuel1.SelectionFont = new Font(grossFuel1.SelectionFont, FontStyle.Bold);
+                    grossFuel1.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker2")
+                {
+                    netFuel2.Clear();
+                    netFuel2.Text = "Regular/Diesel";
+                    netFuel2.Select(0, netFuel2.Text.Length);
+                    netFuel2.SelectionColor = Color.Gray;
+                    netFuel2.Select(7, 1);
+                    netFuel2.SelectionFont = new Font(netFuel2.SelectionFont, FontStyle.Bold);
+                    netFuel2.SelectionColor = Color.Black;
+
+                    grossFuel2.Clear();
+                    grossFuel2.Text = "Regular/Diesel";
+                    grossFuel2.Select(0, netFuel1.Text.Length);
+                    grossFuel2.SelectionColor = Color.Gray;
+                    grossFuel2.Select(7, 1);
+                    grossFuel2.SelectionFont = new Font(grossFuel2.SelectionFont, FontStyle.Bold);
+                    grossFuel2.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker3")
+                {
+                    netFuel3.Clear();
+                    netFuel3.Text = "Regular/Diesel";
+                    netFuel3.Select(0, netFuel1.Text.Length);
+                    netFuel3.SelectionColor = Color.Gray;
+                    netFuel3.Select(7, 1);
+                    netFuel3.SelectionFont = new Font(netFuel3.SelectionFont, FontStyle.Bold);
+                    netFuel3.SelectionColor = Color.Black;
+
+                    grossFuel3.Clear();
+                    grossFuel3.Text = "Regular/Diesel";
+                    grossFuel3.Select(0, netFuel3.Text.Length);
+                    grossFuel3.SelectionColor = Color.Gray;
+                    grossFuel3.Select(7, 1);
+                    grossFuel3.SelectionFont = new Font(grossFuel3.SelectionFont, FontStyle.Bold);
+                    grossFuel3.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker4")
+                {
+                    netFuel4.Clear();
+                    netFuel4.Text = "Regular/Diesel";
+                    netFuel4.Select(0, netFuel4.Text.Length);
+                    netFuel4.SelectionColor = Color.Gray;
+                    netFuel4.Select(7, 1);
+                    netFuel4.SelectionFont = new Font(netFuel4.SelectionFont, FontStyle.Bold);
+                    netFuel4.SelectionColor = Color.Black;
+
+                    grossFuel4.Clear();
+                    grossFuel4.Text = "Regular/Diesel";
+                    grossFuel4.Select(0, netFuel4.Text.Length);
+                    grossFuel4.SelectionColor = Color.Gray;
+                    grossFuel4.Select(7, 1);
+                    grossFuel4.SelectionFont = new Font(grossFuel4.SelectionFont, FontStyle.Bold);
+                    grossFuel4.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker5")
+                {
+                    netFuel5.Clear();
+                    netFuel5.Text = "Regular/Diesel";
+                    netFuel5.Select(0, netFuel5.Text.Length);
+                    netFuel5.SelectionColor = Color.Gray;
+                    netFuel5.Select(7, 1);
+                    netFuel5.SelectionFont = new Font(netFuel5.SelectionFont, FontStyle.Bold);
+                    netFuel5.SelectionColor = Color.Black;
+
+                    grossFuel5.Clear();
+                    grossFuel5.Text = "Regular/Diesel";
+                    grossFuel5.Select(0, netFuel5.Text.Length);
+                    grossFuel5.SelectionColor = Color.Gray;
+                    grossFuel5.Select(7, 1);
+                    grossFuel5.SelectionFont = new Font(grossFuel5.SelectionFont, FontStyle.Bold);
+                    grossFuel5.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker6")
+                {
+                    netFuel6.Clear();
+                    netFuel6.Text = "Regular/Diesel";
+                    netFuel6.Select(0, netFuel6.Text.Length);
+                    netFuel6.SelectionColor = Color.Gray;
+                    netFuel6.Select(7, 1);
+                    netFuel6.SelectionFont = new Font(netFuel6.SelectionFont, FontStyle.Bold);
+                    netFuel6.SelectionColor = Color.Black;
+
+                    grossFuel6.Clear();
+                    grossFuel6.Text = "Regular/Diesel";
+                    grossFuel6.Select(0, netFuel6.Text.Length);
+                    grossFuel6.SelectionColor = Color.Gray;
+                    grossFuel6.Select(7, 1);
+                    grossFuel6.SelectionFont = new Font(grossFuel6.SelectionFont, FontStyle.Bold);
+                    grossFuel6.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker7")
+                {
+                    netFuel7.Clear();
+                    netFuel7.Text = "Regular/Diesel";
+                    netFuel7.Select(0, netFuel7.Text.Length);
+                    netFuel7.SelectionColor = Color.Gray;
+                    netFuel7.Select(7, 1);
+                    netFuel7.SelectionFont = new Font(netFuel7.SelectionFont, FontStyle.Bold);
+                    netFuel7.SelectionColor = Color.Black;
+
+                    grossFuel7.Clear();
+                    grossFuel7.Text = "Regular/Diesel";
+                    grossFuel7.Select(0, netFuel7.Text.Length);
+                    grossFuel7.SelectionColor = Color.Gray;
+                    grossFuel7.Select(7, 1);
+                    grossFuel7.SelectionFont = new Font(grossFuel7.SelectionFont, FontStyle.Bold);
+                    grossFuel7.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker8")
+                {
+                    netFuel8.Clear();
+                    netFuel8.Text = "Regular/Diesel";
+                    netFuel8.Select(0, netFuel8.Text.Length);
+                    netFuel8.SelectionColor = Color.Gray;
+                    netFuel8.Select(7, 1);
+                    netFuel8.SelectionFont = new Font(netFuel8.SelectionFont, FontStyle.Bold);
+                    netFuel8.SelectionColor = Color.Black;
+
+                    grossFuel8.Clear();
+                    grossFuel8.Text = "Regular/Diesel";
+                    grossFuel8.Select(0, netFuel8.Text.Length);
+                    grossFuel8.SelectionColor = Color.Gray;
+                    grossFuel8.Select(7, 1);
+                    grossFuel8.SelectionFont = new Font(grossFuel8.SelectionFont, FontStyle.Bold);
+                    grossFuel8.SelectionColor = Color.Black;
+                }
+            }
+            if (combobox.Text == "Ult/Diesel")
+            {
+                if (combobox.Name == "fuelPicker1")
+                {
+                    netFuel1.Clear();
+                    netFuel1.Text = "Ultra/Diesel";
+                    netFuel1.Select(0, netFuel1.Text.Length);
+                    netFuel1.SelectionColor = Color.Gray;
+                    netFuel1.Select(5, 1);
+                    netFuel1.SelectionFont = new Font(netFuel1.SelectionFont, FontStyle.Bold);
+                    netFuel1.SelectionColor = Color.Black;
+
+                    grossFuel1.Clear();
+                    grossFuel1.Text = "Ultra/Diesel";
+                    grossFuel1.Select(0, netFuel1.Text.Length);
+                    grossFuel1.SelectionColor = Color.Gray;
+                    grossFuel1.Select(5, 1);
+                    grossFuel1.SelectionFont = new Font(grossFuel1.SelectionFont, FontStyle.Bold);
+                    grossFuel1.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker2")
+                {
+                    netFuel2.Clear();
+                    netFuel2.Text = "Ultra/Diesel";
+                    netFuel2.Select(0, netFuel2.Text.Length);
+                    netFuel2.SelectionColor = Color.Gray;
+                    netFuel2.Select(5, 1);
+                    netFuel2.SelectionFont = new Font(netFuel2.SelectionFont, FontStyle.Bold);
+                    netFuel2.SelectionColor = Color.Black;
+
+                    grossFuel2.Clear();
+                    grossFuel2.Text = "Ultra/Diesel";
+                    grossFuel2.Select(0, netFuel1.Text.Length);
+                    grossFuel2.SelectionColor = Color.Gray;
+                    grossFuel2.Select(5, 1);
+                    grossFuel2.SelectionFont = new Font(grossFuel2.SelectionFont, FontStyle.Bold);
+                    grossFuel2.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker3")
+                {
+                    netFuel3.Clear();
+                    netFuel3.Text = "Ultra/Diesel";
+                    netFuel3.Select(0, netFuel1.Text.Length);
+                    netFuel3.SelectionColor = Color.Gray;
+                    netFuel3.Select(5, 1);
+                    netFuel3.SelectionFont = new Font(netFuel3.SelectionFont, FontStyle.Bold);
+                    netFuel3.SelectionColor = Color.Black;
+
+                    grossFuel3.Clear();
+                    grossFuel3.Text = "Ultra/Diesel";
+                    grossFuel3.Select(0, netFuel3.Text.Length);
+                    grossFuel3.SelectionColor = Color.Gray;
+                    grossFuel3.Select(5, 1);
+                    grossFuel3.SelectionFont = new Font(grossFuel3.SelectionFont, FontStyle.Bold);
+                    grossFuel3.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker4")
+                {
+                    netFuel4.Clear();
+                    netFuel4.Text = "Ultra/Diesel";
+                    netFuel4.Select(0, netFuel4.Text.Length);
+                    netFuel4.SelectionColor = Color.Gray;
+                    netFuel4.Select(5, 1);
+                    netFuel4.SelectionFont = new Font(netFuel4.SelectionFont, FontStyle.Bold);
+                    netFuel4.SelectionColor = Color.Black;
+
+                    grossFuel4.Clear();
+                    grossFuel4.Text = "Ultra/Diesel";
+                    grossFuel4.Select(0, netFuel4.Text.Length);
+                    grossFuel4.SelectionColor = Color.Gray;
+                    grossFuel4.Select(5, 1);
+                    grossFuel4.SelectionFont = new Font(grossFuel4.SelectionFont, FontStyle.Bold);
+                    grossFuel4.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker5")
+                {
+                    netFuel5.Clear();
+                    netFuel5.Text = "Ultra/Diesel";
+                    netFuel5.Select(0, netFuel5.Text.Length);
+                    netFuel5.SelectionColor = Color.Gray;
+                    netFuel5.Select(5, 1);
+                    netFuel5.SelectionFont = new Font(netFuel5.SelectionFont, FontStyle.Bold);
+                    netFuel5.SelectionColor = Color.Black;
+
+                    grossFuel5.Clear();
+                    grossFuel5.Text = "Ultra/Diesel";
+                    grossFuel5.Select(0, netFuel5.Text.Length);
+                    grossFuel5.SelectionColor = Color.Gray;
+                    grossFuel5.Select(5, 1);
+                    grossFuel5.SelectionFont = new Font(grossFuel5.SelectionFont, FontStyle.Bold);
+                    grossFuel5.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker6")
+                {
+                    netFuel6.Clear();
+                    netFuel6.Text = "Ultra/Diesel";
+                    netFuel6.Select(0, netFuel6.Text.Length);
+                    netFuel6.SelectionColor = Color.Gray;
+                    netFuel6.Select(5, 1);
+                    netFuel6.SelectionFont = new Font(netFuel6.SelectionFont, FontStyle.Bold);
+                    netFuel6.SelectionColor = Color.Black;
+
+                    grossFuel6.Clear();
+                    grossFuel6.Text = "Ultra/Diesel";
+                    grossFuel6.Select(0, netFuel6.Text.Length);
+                    grossFuel6.SelectionColor = Color.Gray;
+                    grossFuel6.Select(5, 1);
+                    grossFuel6.SelectionFont = new Font(grossFuel6.SelectionFont, FontStyle.Bold);
+                    grossFuel6.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker7")
+                {
+                    netFuel7.Clear();
+                    netFuel7.Text = "Ultra/Diesel";
+                    netFuel7.Select(0, netFuel7.Text.Length);
+                    netFuel7.SelectionColor = Color.Gray;
+                    netFuel7.Select(5, 1);
+                    netFuel7.SelectionFont = new Font(netFuel7.SelectionFont, FontStyle.Bold);
+                    netFuel7.SelectionColor = Color.Black;
+
+                    grossFuel7.Clear();
+                    grossFuel7.Text = "Ultra/Diesel";
+                    grossFuel7.Select(0, netFuel7.Text.Length);
+                    grossFuel7.SelectionColor = Color.Gray;
+                    grossFuel7.Select(5, 1);
+                    grossFuel7.SelectionFont = new Font(grossFuel7.SelectionFont, FontStyle.Bold);
+                    grossFuel7.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker8")
+                {
+                    netFuel8.Clear();
+                    netFuel8.Text = "Ultra/Diesel";
+                    netFuel8.Select(0, netFuel8.Text.Length);
+                    netFuel8.SelectionColor = Color.Gray;
+                    netFuel8.Select(5, 1);
+                    netFuel8.SelectionFont = new Font(netFuel8.SelectionFont, FontStyle.Bold);
+                    netFuel8.SelectionColor = Color.Black;
+
+                    grossFuel8.Clear();
+                    grossFuel8.Text = "Ultra/Diesel";
+                    grossFuel8.Select(0, netFuel8.Text.Length);
+                    grossFuel8.SelectionColor = Color.Gray;
+                    grossFuel8.Select(5, 1);
+                    grossFuel8.SelectionFont = new Font(grossFuel8.SelectionFont, FontStyle.Bold);
+                    grossFuel8.SelectionColor = Color.Black;
+                }
+            }
+        }
+        private void RichTextChecker(object sender, KeyEventArgs e)
+        {
+            RichTextBox rich = new RichTextBox();
+            rich = (RichTextBox)sender;
+
+            rich.SelectionFont = new Font(grossFuel1.SelectionFont, FontStyle.Regular);
+
+            if (e.KeyCode == Keys.Oem2 || e.KeyCode == Keys.Divide)
+            {
+                e.SuppressKeyPress = true;
+            }
+            if (rich.SelectionStart == rich.Text.IndexOf('/') + 1 && e.KeyCode == Keys.Back || rich.SelectedText.Contains('/'))
+            {
+                e.SuppressKeyPress = true;
+            }
+            else if (rich.SelectionStart <= rich.Text.IndexOf('/') && (rich.Text.Contains("Reg/") || rich.Text.Contains("Ult/"))) 
+            {
+                rich.Select(0, rich.Text.IndexOf('/'));
+                rich.SelectedText.Trim();
+                
+                rich.SelectionColor = Color.Black;
+            }
+            else if (rich.SelectionStart > rich.Text.IndexOf('/') && (rich.Text.Contains("/Ultra") || rich.Text.Contains("/Diesel")))
+            {
+                rich.Select(rich.Text.IndexOf('/') + 1, rich.Text.Length - rich.Text.IndexOf('/') + 1);
+                rich.SelectedText.Trim();
+
+                rich.SelectionColor = Color.Black;
+            }
         }
     }
 }

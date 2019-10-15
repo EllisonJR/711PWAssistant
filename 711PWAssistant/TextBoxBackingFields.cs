@@ -101,17 +101,17 @@ namespace _711PWAssistant
 
         public static double Checks { get; set; }
 
-        public static string OnlinePaidOut { get; set; }
-        public static string OnlineSales { get; set; }
-        public static string InstantPaidOut { get; set; }
-        public static string InstantSales { get; set; }
+        public static double OnlinePaidOut { get; set; }
+        public static double OnlineSales { get; set; }
+        public static double InstantPaidOut { get; set; }
+        public static double InstantSales { get; set; }
 
-        public static string AmbestRedeem { get; set; }
-        public static string StorePaidOut { get; set; }
-        public static string Coupons { get; set; }
-        public static string Incentive { get; set; }
-        public static string Reimbursement { get; set; }
-        public static string Overrun { get; set; }
+        public static double AmbestRedeem { get; set; }
+        public static double StorePaidOut { get; set; }
+        public static double Coupons { get; set; }
+        public static double Incentive { get; set; }
+        public static double Reimbursement { get; set; }
+        public static double Overrun { get; set; }
 
         public static string FuelType1 { get; set; }
         public static string BillOfLading1 { get; set; }
@@ -242,15 +242,17 @@ namespace _711PWAssistant
 
             Checks = 0;
 
-            InstantPaidOut = null;
-            InstantSales = null;
-            OnlinePaidOut = null;
-            OnlineSales = null;
+            InstantPaidOut = 0;
+            InstantSales = 0;
+            OnlinePaidOut = 0;
+            OnlineSales = 0;
 
-            AmbestRedeem = null;
-            StorePaidOut = null;
-            Incentive = null;
-            Coupons = null;
+            AmbestRedeem = 0;
+            StorePaidOut = 0;
+            Incentive = 0;
+            Coupons = 0;
+            Reimbursement = 0;
+            Overrun = 0;
 
             FuelType1 = null;
             BillOfLading1 = null;
