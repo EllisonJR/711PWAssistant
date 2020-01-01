@@ -1958,7 +1958,7 @@ namespace _711PWAssistant
             {
                 e.SuppressKeyPress = true;
             }
-            else if (rich.SelectionStart <= rich.Text.IndexOf('/') && (rich.Text.Contains("Reg/") || rich.Text.Contains("Ult/"))) 
+            else if (rich.SelectionStart <= rich.Text.IndexOf('/') && (rich.Text.Contains("Regular") || rich.Text.Contains("Ultra/"))) 
             {
                 rich.Select(0, rich.Text.IndexOf('/'));
                 rich.SelectedText.Trim();
