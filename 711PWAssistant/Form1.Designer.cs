@@ -918,7 +918,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(243, 431);
+            this.label24.Location = new System.Drawing.Point(343, 432);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(24, 13);
             this.label24.TabIndex = 66;
@@ -927,7 +927,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(345, 431);
+            this.label25.Location = new System.Drawing.Point(242, 431);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(34, 13);
             this.label25.TabIndex = 67;
@@ -937,6 +937,7 @@
             // 
             this.fuelPicker2.FormattingEnabled = true;
             this.fuelPicker2.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -956,6 +957,7 @@
             // 
             this.fuelPicker3.FormattingEnabled = true;
             this.fuelPicker3.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -975,6 +977,7 @@
             // 
             this.fuelPicker4.FormattingEnabled = true;
             this.fuelPicker4.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -994,6 +997,7 @@
             // 
             this.fuelPicker5.FormattingEnabled = true;
             this.fuelPicker5.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -2460,6 +2464,7 @@
             // 
             this.fuelPicker6.FormattingEnabled = true;
             this.fuelPicker6.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -2513,6 +2518,7 @@
             // 
             this.fuelPicker7.FormattingEnabled = true;
             this.fuelPicker7.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",
@@ -2566,6 +2572,7 @@
             // 
             this.fuelPicker8.FormattingEnabled = true;
             this.fuelPicker8.Items.AddRange(new object[] {
+            "<choose fuel type>",
             "Regular",
             "Ultra",
             "Diesel",

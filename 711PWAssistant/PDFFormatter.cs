@@ -13,6 +13,8 @@ using System.Threading;
 using System.Diagnostics;
 using ZetPDF.Pdf.Printing;
 using System.Drawing;
+using System.Windows.Forms;
+using System.Deployment;
 
 
 namespace _711PWAssistant
@@ -1027,10 +1029,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1062,10 +1064,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1097,10 +1099,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1132,10 +1134,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1167,10 +1169,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1202,10 +1204,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1237,10 +1239,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
@@ -1272,10 +1274,10 @@ namespace _711PWAssistant
                                 gfx.DrawString("Bill of Lading", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X += fuelRect.Width;
                                 gfx.DrawRectangle(pen, greyBox, fuelRect);
-                                gfx.DrawString("Gross Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
+                                gfx.DrawString("Net Fuel", smallDenotationFont, XBrushes.Black, fuelRect.X + 2, fuelRect.Y + 2, XStringFormats.TopLeft);
                                 fuelRect.X -= fuelRect.Width * 3;
                                 fuelRect.Y += font.Height;
                             }
