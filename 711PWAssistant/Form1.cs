@@ -1942,6 +1942,73 @@ namespace _711PWAssistant
                     grossFuel8.SelectionColor = Color.Black;
                 }
             }
+            if (combobox.Text == "Diesel" || combobox.Text == "Regular" || combobox.Text == "Ultra" || combobox.Text == "DEF" || combobox.Text == "<choose fuel type>")
+            {
+                if (combobox.Name == "fuelPicker1")
+                {
+                    netFuel1.Clear();
+                    netFuel1.SelectionColor = Color.Black;
+
+                    grossFuel1.Clear();
+                    grossFuel1.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker2")
+                {
+                    netFuel2.Clear();
+                    netFuel2.SelectionColor = Color.Black;
+
+                    grossFuel2.Clear();
+                    grossFuel2.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker3")
+                {
+                    netFuel3.Clear();
+                    netFuel3.SelectionColor = Color.Black;
+
+                    grossFuel3.Clear();
+                    grossFuel3.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker4")
+                {
+                    netFuel4.Clear();
+                    netFuel4.SelectionColor = Color.Black;
+
+                    grossFuel4.Clear();
+                    grossFuel4.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker5")
+                {
+                    netFuel5.Clear();
+                    netFuel5.SelectionColor = Color.Black;
+
+                    grossFuel5.Clear();
+                    grossFuel5.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker6")
+                {
+                    netFuel6.Clear();
+                    netFuel6.SelectionColor = Color.Black;
+
+                    grossFuel6.Clear();
+                    grossFuel6.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker7")
+                {
+                    netFuel7.Clear();
+                    netFuel7.SelectionColor = Color.Black;
+
+                    grossFuel7.Clear();
+                    grossFuel7.SelectionColor = Color.Black;
+                }
+                if (combobox.Name == "fuelPicker8")
+                {
+                    netFuel8.Clear();
+                    netFuel8.SelectionColor = Color.Black;
+
+                    grossFuel8.Clear();
+                    grossFuel8.SelectionColor = Color.Black;
+                }
+            }
         }
         private void RichTextChecker(object sender, KeyEventArgs e)
         {
@@ -1973,5 +2040,13 @@ namespace _711PWAssistant
                 rich.SelectionColor = Color.Black;
             }
         }
+        /*private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Stream objStream = new FileStream(Properties.Settings.Default["RootFilePath"].ToString() + "employeelist.bin", FileMode.Create, FileAccess.ReadWrite, FileShare.None);
+
+            binaryFormatter.Serialize(objStream, formValues);
+            objStream.Close();
+        }*/
     }
 }

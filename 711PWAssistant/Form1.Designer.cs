@@ -261,6 +261,7 @@
             this.label35 = new System.Windows.Forms.Label();
             this.reimbursement = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
+            this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -1379,7 +1380,7 @@
             this.onlinePaidout.Location = new System.Drawing.Point(647, 476);
             this.onlinePaidout.Name = "onlinePaidout";
             this.onlinePaidout.Size = new System.Drawing.Size(62, 20);
-            this.onlinePaidout.TabIndex = 107;
+            this.onlinePaidout.TabIndex = 109;
             this.onlinePaidout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.onlinePaidout.TextChanged += new System.EventHandler(this.textChanged);
             this.onlinePaidout.Enter += new System.EventHandler(this.SelectUponTab);
@@ -1400,7 +1401,7 @@
             this.onlineSales.Location = new System.Drawing.Point(518, 476);
             this.onlineSales.Name = "onlineSales";
             this.onlineSales.Size = new System.Drawing.Size(62, 20);
-            this.onlineSales.TabIndex = 106;
+            this.onlineSales.TabIndex = 108;
             this.onlineSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.onlineSales.TextChanged += new System.EventHandler(this.textChanged);
             this.onlineSales.Enter += new System.EventHandler(this.SelectUponTab);
@@ -1465,7 +1466,7 @@
             this.instantSales.Location = new System.Drawing.Point(518, 529);
             this.instantSales.Name = "instantSales";
             this.instantSales.Size = new System.Drawing.Size(62, 20);
-            this.instantSales.TabIndex = 108;
+            this.instantSales.TabIndex = 110;
             this.instantSales.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.instantSales.TextChanged += new System.EventHandler(this.textChanged);
             this.instantSales.Enter += new System.EventHandler(this.SelectUponTab);
@@ -1476,7 +1477,7 @@
             this.instantPaidout.Location = new System.Drawing.Point(647, 529);
             this.instantPaidout.Name = "instantPaidout";
             this.instantPaidout.Size = new System.Drawing.Size(62, 20);
-            this.instantPaidout.TabIndex = 109;
+            this.instantPaidout.TabIndex = 111;
             this.instantPaidout.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.instantPaidout.UseWaitCursor = true;
             this.instantPaidout.TextChanged += new System.EventHandler(this.textChanged);
@@ -1605,7 +1606,7 @@
             this.gasCigs.Name = "gasCigs";
             this.gasCigs.ShortcutsEnabled = false;
             this.gasCigs.Size = new System.Drawing.Size(61, 20);
-            this.gasCigs.TabIndex = 110;
+            this.gasCigs.TabIndex = 112;
             this.gasCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.gasCigs.TextChanged += new System.EventHandler(this.textChanged);
             this.gasCigs.Enter += new System.EventHandler(this.SelectUponTab);
@@ -1617,7 +1618,7 @@
             this.dieselCigs.Name = "dieselCigs";
             this.dieselCigs.ShortcutsEnabled = false;
             this.dieselCigs.Size = new System.Drawing.Size(61, 20);
-            this.dieselCigs.TabIndex = 111;
+            this.dieselCigs.TabIndex = 113;
             this.dieselCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dieselCigs.TextChanged += new System.EventHandler(this.textChanged);
             this.dieselCigs.Enter += new System.EventHandler(this.SelectUponTab);
@@ -1629,7 +1630,7 @@
             this.officeCigs.Name = "officeCigs";
             this.officeCigs.ShortcutsEnabled = false;
             this.officeCigs.Size = new System.Drawing.Size(61, 20);
-            this.officeCigs.TabIndex = 112;
+            this.officeCigs.TabIndex = 114;
             this.officeCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.officeCigs.TextChanged += new System.EventHandler(this.textChanged);
             this.officeCigs.Enter += new System.EventHandler(this.SelectUponTab);
@@ -1924,7 +1925,7 @@
             this.mclaneCigs.Name = "mclaneCigs";
             this.mclaneCigs.ShortcutsEnabled = false;
             this.mclaneCigs.Size = new System.Drawing.Size(61, 20);
-            this.mclaneCigs.TabIndex = 113;
+            this.mclaneCigs.TabIndex = 115;
             this.mclaneCigs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mclaneCigs.TextChanged += new System.EventHandler(this.textChanged);
             this.mclaneCigs.Enter += new System.EventHandler(this.SelectUponTab);
@@ -2307,7 +2308,7 @@
             this.netFuel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel1.ShortcutsEnabled = false;
             this.netFuel1.Size = new System.Drawing.Size(95, 21);
-            this.netFuel1.TabIndex = 224;
+            this.netFuel1.TabIndex = 12;
             this.netFuel1.Text = "";
             this.netFuel1.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2319,7 +2320,7 @@
             this.grossFuel1.Name = "grossFuel1";
             this.grossFuel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel1.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel1.TabIndex = 223;
+            this.grossFuel1.TabIndex = 13;
             this.grossFuel1.Text = "";
             this.grossFuel1.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2341,7 +2342,7 @@
             this.netFuel2.Name = "netFuel2";
             this.netFuel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel2.Size = new System.Drawing.Size(95, 21);
-            this.netFuel2.TabIndex = 222;
+            this.netFuel2.TabIndex = 16;
             this.netFuel2.Text = "";
             this.netFuel2.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2353,7 +2354,7 @@
             this.grossFuel2.Name = "grossFuel2";
             this.grossFuel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel2.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel2.TabIndex = 221;
+            this.grossFuel2.TabIndex = 17;
             this.grossFuel2.Text = "";
             this.grossFuel2.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2375,7 +2376,7 @@
             this.netFuel3.Name = "netFuel3";
             this.netFuel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel3.Size = new System.Drawing.Size(95, 21);
-            this.netFuel3.TabIndex = 220;
+            this.netFuel3.TabIndex = 20;
             this.netFuel3.Text = "";
             this.netFuel3.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2387,7 +2388,7 @@
             this.grossFuel3.Name = "grossFuel3";
             this.grossFuel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel3.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel3.TabIndex = 219;
+            this.grossFuel3.TabIndex = 21;
             this.grossFuel3.Text = "";
             this.grossFuel3.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2409,7 +2410,7 @@
             this.netFuel4.Name = "netFuel4";
             this.netFuel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel4.Size = new System.Drawing.Size(95, 21);
-            this.netFuel4.TabIndex = 218;
+            this.netFuel4.TabIndex = 24;
             this.netFuel4.Text = "";
             this.netFuel4.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2421,7 +2422,7 @@
             this.grossFuel4.Name = "grossFuel4";
             this.grossFuel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel4.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel4.TabIndex = 217;
+            this.grossFuel4.TabIndex = 25;
             this.grossFuel4.Text = "";
             this.grossFuel4.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2443,7 +2444,7 @@
             this.netFuel5.Name = "netFuel5";
             this.netFuel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel5.Size = new System.Drawing.Size(95, 21);
-            this.netFuel5.TabIndex = 216;
+            this.netFuel5.TabIndex = 28;
             this.netFuel5.Text = "";
             this.netFuel5.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2455,7 +2456,7 @@
             this.grossFuel5.Name = "grossFuel5";
             this.grossFuel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel5.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel5.TabIndex = 215;
+            this.grossFuel5.TabIndex = 29;
             this.grossFuel5.Text = "";
             this.grossFuel5.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2497,7 +2498,7 @@
             this.netFuel6.Name = "netFuel6";
             this.netFuel6.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel6.Size = new System.Drawing.Size(95, 21);
-            this.netFuel6.TabIndex = 214;
+            this.netFuel6.TabIndex = 32;
             this.netFuel6.Text = "";
             this.netFuel6.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2509,7 +2510,7 @@
             this.grossFuel6.Name = "grossFuel6";
             this.grossFuel6.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel6.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel6.TabIndex = 213;
+            this.grossFuel6.TabIndex = 33;
             this.grossFuel6.Text = "";
             this.grossFuel6.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2551,7 +2552,7 @@
             this.netFuel7.Name = "netFuel7";
             this.netFuel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel7.Size = new System.Drawing.Size(95, 21);
-            this.netFuel7.TabIndex = 212;
+            this.netFuel7.TabIndex = 36;
             this.netFuel7.Text = "";
             this.netFuel7.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2563,7 +2564,7 @@
             this.grossFuel7.Name = "grossFuel7";
             this.grossFuel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel7.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel7.TabIndex = 211;
+            this.grossFuel7.TabIndex = 37;
             this.grossFuel7.Text = "";
             this.grossFuel7.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2605,7 +2606,7 @@
             this.netFuel8.Name = "netFuel8";
             this.netFuel8.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.netFuel8.Size = new System.Drawing.Size(95, 21);
-            this.netFuel8.TabIndex = 209;
+            this.netFuel8.TabIndex = 40;
             this.netFuel8.Text = "";
             this.netFuel8.TextChanged += new System.EventHandler(this.textChanged);
             this.netFuel8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2617,7 +2618,7 @@
             this.grossFuel8.Name = "grossFuel8";
             this.grossFuel8.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.grossFuel8.Size = new System.Drawing.Size(95, 21);
-            this.grossFuel8.TabIndex = 210;
+            this.grossFuel8.TabIndex = 41;
             this.grossFuel8.Text = "";
             this.grossFuel8.TextChanged += new System.EventHandler(this.textChanged);
             this.grossFuel8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTextChecker);
@@ -2677,7 +2678,8 @@
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeApplicationFilepathToolStripMenuItem,
             this.tubeAmountsToolStripMenuItem,
-            this.drawerAmountsToolStripMenuItem});
+            this.drawerAmountsToolStripMenuItem,
+            this.employeesToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -2685,21 +2687,21 @@
             // changeApplicationFilepathToolStripMenuItem
             // 
             this.changeApplicationFilepathToolStripMenuItem.Name = "changeApplicationFilepathToolStripMenuItem";
-            this.changeApplicationFilepathToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.changeApplicationFilepathToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeApplicationFilepathToolStripMenuItem.Text = "PWS FilePath";
             this.changeApplicationFilepathToolStripMenuItem.Click += new System.EventHandler(this.ChangeApplicationFilepathToolStripMenuItem_Click);
             // 
             // tubeAmountsToolStripMenuItem
             // 
             this.tubeAmountsToolStripMenuItem.Name = "tubeAmountsToolStripMenuItem";
-            this.tubeAmountsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.tubeAmountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tubeAmountsToolStripMenuItem.Text = "Tube Amounts";
             this.tubeAmountsToolStripMenuItem.Click += new System.EventHandler(this.ChangeTubes_Click);
             // 
             // drawerAmountsToolStripMenuItem
             // 
             this.drawerAmountsToolStripMenuItem.Name = "drawerAmountsToolStripMenuItem";
-            this.drawerAmountsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.drawerAmountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.drawerAmountsToolStripMenuItem.Text = "Drawer Amounts";
             // 
             // folderBrowserDialog1
@@ -2735,7 +2737,7 @@
             this.overrun.Location = new System.Drawing.Point(553, 395);
             this.overrun.Name = "overrun";
             this.overrun.Size = new System.Drawing.Size(41, 20);
-            this.overrun.TabIndex = 205;
+            this.overrun.TabIndex = 107;
             this.overrun.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.overrun.TextChanged += new System.EventHandler(this.textChanged);
             this.overrun.Enter += new System.EventHandler(this.SelectUponTab);
@@ -2755,7 +2757,7 @@
             this.reimbursement.Location = new System.Drawing.Point(416, 395);
             this.reimbursement.Name = "reimbursement";
             this.reimbursement.Size = new System.Drawing.Size(44, 20);
-            this.reimbursement.TabIndex = 204;
+            this.reimbursement.TabIndex = 106;
             this.reimbursement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.reimbursement.TextChanged += new System.EventHandler(this.textChanged);
             this.reimbursement.Enter += new System.EventHandler(this.SelectUponTab);
@@ -2769,6 +2771,13 @@
             this.label36.Size = new System.Drawing.Size(80, 13);
             this.label36.TabIndex = 206;
             this.label36.Text = "Reimbursement";
+            // 
+            // employeesToolStripMenuItem
+            // 
+            this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
+            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeesToolStripMenuItem.Text = "Employees";
+            //this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -3181,6 +3190,7 @@
         private System.Windows.Forms.TextBox billOfLading8;
         private System.Windows.Forms.RichTextBox netFuel8;
         private System.Windows.Forms.RichTextBox grossFuel8;
+        private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
     }
 }
 

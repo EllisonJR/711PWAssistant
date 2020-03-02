@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>https://github.com/EllisonJR/711PWAssistant/raw/master/711PWAssistant/</PublishUrl>
+    <PublishUrl>C:\Users\Steven\Desktop\deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,8 +26,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://github.com/EllisonJR/711PWAssistant/raw/master/711PWAssistant/</InstallUrl>
     <UpdateUrl>https://github.com/EllisonJR/711PWAssistant/raw/master/711PWAssistant/</UpdateUrl>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.1.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -85,6 +85,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeList.Designer.cs">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="PDFFormatter.cs" />
     <Compile Include="PumpTestsForm.cs">
       <SubType>Form</SubType>
@@ -123,6 +129,9 @@
     <Compile Include="TubesForm.Designer.cs">
       <DependentUpon>TubesForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EmployeeList.resx">
+      <DependentUpon>EmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PumpTestsForm.resx">
       <DependentUpon>PumpTestsForm.cs</DependentUpon>
     </EmbeddedResource>
